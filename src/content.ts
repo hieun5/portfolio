@@ -1,8 +1,8 @@
 /** Edit your public profile here. Add real projects to the array below. */
 export const profile = {
   name: "Hieu Nguyen",
-  role: "Software engineering & AI / ML",
-  intro: "Interested in useful software and practical machine learning.",
+  intro:
+    "Sup! I'm Hieu (pronounced hue), and I'm a Computer Science student. I'm interested in software engineering and applying AI and machine learning to real world problems.",
   github: "https://github.com/hieun5",
   email: "hieunguy141@gmail.com",
   source: "https://github.com/hieun5/portfolio",
@@ -14,12 +14,22 @@ export interface SkillGroup {
   items: string[];
 }
 
-// Based on lolPredict's backend, ML scripts, and frontend, plus this portfolio.
+// Based on lolPredict and this portfolio, with additional languages requested by Hieu.
 export const technicalSkills: SkillGroup[] = [
   {
     category: "Languages",
     tone: "blue",
-    items: ["Python", "TypeScript", "JavaScript", "HTML", "CSS"],
+    items: [
+      "Python",
+      "Java",
+      "C",
+      "C++",
+      "TypeScript",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "SQL",
+    ],
   },
   {
     category: "Frameworks & libraries",

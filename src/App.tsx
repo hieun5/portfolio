@@ -41,7 +41,7 @@ export default function App() {
               {profile.name}
               <span>.</span>
             </h1>
-            <p className="role">{profile.role}</p>
+            <h2 className="hero-about-heading">About me</h2>
             <p className="hero-intro">{profile.intro}</p>
           </section>
 

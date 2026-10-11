@@ -106,10 +106,11 @@ h1 {
 h1 span {
   color: var(--muted);
 }
-.role {
+.hero-about-heading {
   color: var(--text);
   margin: 0 0 13px;
   font-size: 15px;
+  font-weight: 500;
   line-height: 1.7;
 }
 .hero-intro {
@@ -319,7 +320,7 @@ footer {
     font-size: clamp(40px, 9vw, 58px);
     letter-spacing: -2.4px;
   }
-  .role,
+  .hero-about-heading,
   .hero-intro {
     font-size: 14px;
   }
@@ -348,7 +349,7 @@ footer {
     letter-spacing: -1.9px;
     margin-bottom: 21px;
   }
-  .role {
+  .hero-about-heading {
     font-size: 13px;
     margin-bottom: 11px;
   }

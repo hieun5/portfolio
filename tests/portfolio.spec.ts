@@ -12,7 +12,7 @@ test("loads the profile without browser errors and leaves projects for later", a
     "Hieu Nguyen.",
   );
   await expect(
-    page.getByText("Software engineering & AI / ML", { exact: true }),
+    page.getByRole("heading", { name: "About me", exact: true }),
   ).toBeVisible();
   await expect(page.getByText("Projects coming soon.")).toBeVisible();
   await expect(page.locator(".project-card")).toHaveCount(0);
