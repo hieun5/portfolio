@@ -24,7 +24,7 @@ npm run dev -- --port 5173 --strictPort
 
 ## Personalize
 
-Edit `src/content.ts` to update the name, About me introduction (`intro`), GitHub profile, and email address. GitHub and Email appear in the header navigation. Email opens Gmail's compose page in a new tab with the recipient filled in. Update `technicalSkills` using entries with a `category`, a `tone` (`blue`, `orange`, or `green`), and an `items` array. Skills use compact, outlined pills with a dark interior and matching colored text: light blue for languages, light orange for frameworks and libraries, and light green for tools. No API key or backend is required.
+Edit `src/content.ts` to update the name, About me introduction (`intro`), hobbies paragraph (`interests`), GitHub profile, and email address. GitHub and Email appear in the header navigation. Email opens Gmail's compose page in a new tab with the recipient filled in. Update `technicalSkills` using entries with a `category`, a `tone` (`blue`, `orange`, or `green`), and an `items` array. Skills use compact, outlined pills with a dark interior and matching colored text: light blue for languages, light orange for frameworks and libraries, and light green for tools. No API key or backend is required.
 
 The skills list combines languages requested by Hieu (Java, C, C++, and SQL) with technologies from the public [lolPredict source](https://github.com/hieun5/lolPredict/tree/ddc9ca1ce6a1893143897481573a7379947058ed) and this portfolio's source, package manifest, and deployment script. The latest lolPredict backend imports Requests and FastAPI, its ML scripts use pandas, and its frontend uses React, TypeScript, Vite, and ESLint. The page omits proficiency ratings and testing skills.
 
