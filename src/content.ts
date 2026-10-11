@@ -5,8 +5,8 @@ export const profile = {
   intro: "Interested in useful software and practical machine learning.",
   github: "https://github.com/hieun5",
   source: "https://github.com/hieun5/portfolio",
-  // Add your public contact email to enable the email link and copy button.
-  email: "",
+  email: "hieunguy141@gmail.com",
+  phone: "971 407 0001",
 };
 
 export type Category = "All work" | "Software engineering" | "AI / ML";

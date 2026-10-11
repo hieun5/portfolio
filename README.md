@@ -24,7 +24,7 @@ npm run dev -- --port 5173 --strictPort
 
 ## Personalize
 
-Edit `src/content.ts` to update the name, role, short introduction, GitHub profile, and optional public contact email. Without an email, the contact link opens GitHub and the copy button copies the profile link. No email provider, API key, or backend is required.
+Edit `src/content.ts` to update the name, role, short introduction, GitHub profile, public contact email, and phone number. The footer provides clickable email and telephone links, and the copy button copies the email address. No email provider, API key, or backend is required.
 
 The projects array is intentionally empty. The page displays a short placeholder until you add real projects. Each project supports:
 

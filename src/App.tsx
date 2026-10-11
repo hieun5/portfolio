@@ -7,7 +7,6 @@ export default function App() {
     "idle",
   );
   const copyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const contactUrl = profile.email ? `mailto:${profile.email}` : profile.github;
 
   useEffect(
     () => () => {
@@ -18,7 +17,7 @@ export default function App() {
 
   async function copyContact() {
     try {
-      await navigator.clipboard.writeText(profile.email || profile.github);
+      await navigator.clipboard.writeText(profile.email);
       setCopyState("copied");
     } catch {
       setCopyState("error");
@@ -135,40 +134,41 @@ export default function App() {
           <div className="contact-row">
             <h2 id="contact-heading">Get in touch</h2>
             <div className="contact-links">
-              <a
-                className="text-link"
-                href={contactUrl}
-                {...(!profile.email
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
-              >
-                {profile.email || "Find me on GitHub"}{" "}
-                <ArrowUpRight size={14} />
-              </a>
-              <button
-                className="copy-contact"
-                aria-label={
-                  copyState === "copied"
-                    ? "Copied!"
-                    : profile.email
-                      ? "Copy email address"
-                      : "Copy GitHub link"
-                }
-                onClick={copyContact}
-              >
-                {copyState === "copied" ? (
-                  <Check size={14} />
-                ) : (
-                  <Copy size={14} />
-                )}
-              </button>
+              {profile.email && (
+                <div className="contact-email">
+                  <a className="text-link" href={`mailto:${profile.email}`}>
+                    {profile.email} <ArrowUpRight size={14} />
+                  </a>
+                  <button
+                    className="copy-contact"
+                    aria-label={
+                      copyState === "copied" ? "Copied!" : "Copy email address"
+                    }
+                    onClick={copyContact}
+                  >
+                    {copyState === "copied" ? (
+                      <Check size={14} />
+                    ) : (
+                      <Copy size={14} />
+                    )}
+                  </button>
+                </div>
+              )}
+              {profile.phone && (
+                <a
+                  className="text-link"
+                  href={`tel:${profile.phone.replace(/[^\d+]/g, "")}`}
+                >
+                  {profile.phone} <ArrowUpRight size={14} />
+                </a>
+              )}
             </div>
           </div>
           <p className="copy-feedback" role="status">
             {copyState === "error"
               ? "Copy is unavailable. You can use the link above."
               : copyState === "copied"
-                ? "Contact link copied to clipboard."
+                ? "Email address copied to clipboard."
                 : ""}
           </p>
           <div className="footer-bottom">

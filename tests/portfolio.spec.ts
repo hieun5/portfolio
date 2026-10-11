@@ -17,7 +17,7 @@ test("loads the profile without browser errors and leaves projects for later", a
   await expect(page.getByText("Projects coming soon.")).toBeVisible();
   await expect(page.locator(".project-card")).toHaveCount(0);
   await expect(
-    page.getByRole("link", { name: "Find me on GitHub", exact: false }).first(),
+    page.getByRole("link", { name: "GitHub", exact: true }),
   ).toHaveAttribute("href", "https://github.com/hieun5");
   expect(errors).toEqual([]);
 });
@@ -43,19 +43,27 @@ test("navigation links work on desktop and mobile", async ({ page }) => {
   await expect(page.getByRole("heading", { level: 1 })).toBeInViewport();
 });
 
-test("contact button copies the actual GitHub link", async ({
+test("contact links provide email and phone and copy the email address", async ({
   page,
   context,
 }) => {
   await context.grantPermissions(["clipboard-read", "clipboard-write"]);
   await page.goto("/");
-  await page.getByRole("button", { name: "Copy GitHub link" }).click();
+  const contact = page.locator("#contact");
+  await expect(
+    contact.getByRole("link", { name: "hieunguy141@gmail.com" }),
+  ).toHaveAttribute("href", "mailto:hieunguy141@gmail.com");
+  await expect(
+    contact.getByRole("link", { name: "971 407 0001" }),
+  ).toHaveAttribute("href", "tel:9714070001");
+  await expect(contact.getByRole("link", { name: /github/i })).toHaveCount(0);
+  await page.getByRole("button", { name: "Copy email address" }).click();
   await expect(page.getByRole("button", { name: "Copied!" })).toBeVisible();
   expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(
-    "https://github.com/hieun5",
+    "hieunguy141@gmail.com",
   );
   await expect(page.getByRole("status")).toHaveText(
-    "Contact link copied to clipboard.",
+    "Email address copied to clipboard.",
   );
 });
 
