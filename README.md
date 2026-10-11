@@ -55,4 +55,18 @@ The tests exercise desktop and mobile rendering, navigation, the clipboard inter
 
 ## Deployment
 
-Run `npm run build` and deploy `dist/` to any static host. The site has no required runtime environment variables and makes no third-party font requests. It assumes hosting at the domain root; configure Vite's `base` if deploying under a subpath.
+Run `npm run build` and deploy `dist/` to any static host. The site has no required runtime environment variables and makes no third-party font requests.
+
+### GitHub Pages
+
+The repository contains source code; pushing to `main` alone does not make a website public. A separate `gh-pages` branch contains the production build with asset paths configured for `/portfolio/`.
+
+To enable the website, open [the repository's Pages settings](https://github.com/hieun5/portfolio/settings/pages) and select **Deploy from a branch**, **gh-pages**, and **/ (root)**, then click **Save**. GitHub will display the live URL after deployment completes. Its standard address is `https://hieun5.github.io/portfolio/`; a successful branch push alone does not establish that the website is live.
+
+After changing the site, publish a fresh build with:
+
+```sh
+npm run deploy:pages
+```
+
+This command builds for the repository subpath, uses your existing Git credentials, preserves any custom-domain `CNAME`, and pushes to `gh-pages` without force-pushing. It leaves the source checkout on its current branch. Configured Pages hosting rebuilds after the branch updates.
