@@ -1,6 +1,6 @@
 # Hieu Nguyen — Portfolio
 
-A minimal, dark portfolio for software engineering and AI/ML. Built with React, TypeScript, and Vite, with self-hosted fonts, keyboard-accessible navigation, and reduced-motion support. The page has a brief introduction, a projects area, and contact links in the footer.
+A minimal, dark portfolio for software engineering and AI/ML. Built with React, TypeScript, and Vite, with self-hosted fonts, keyboard-accessible navigation, and reduced-motion support. The page has a brief introduction, projects, and technical skills.
 
 ## Development
 
@@ -24,7 +24,9 @@ npm run dev -- --port 5173 --strictPort
 
 ## Personalize
 
-Edit `src/content.ts` to update the name, role, short introduction, GitHub profile, public contact email, and phone number. The footer provides clickable email and telephone links, and the copy button copies the email address. No email provider, API key, or backend is required.
+Edit `src/content.ts` to update the name, role, short introduction, and GitHub profile. Update `technicalSkills` using entries with a `category` and an `items` array. No API key or backend is required.
+
+The current skills list is based on the public [lolPredict backend](https://github.com/hieun5/lolPredict/blob/752c8e4a3bb8ce0870535a7fdf69602a18a42e2e/backend/main.py) and this portfolio's source, package manifest, tests, and deployment script. It lists technologies used in those repositories, with no proficiency ratings.
 
 The projects array is intentionally empty. The page displays a short placeholder until you add real projects. Each project supports:
 
@@ -51,7 +53,7 @@ Real projects render as simple rows with expandable case studies. Update the pag
 npm test
 ```
 
-The tests exercise desktop and mobile rendering, navigation, the clipboard interaction, accessibility, and layout down to 320 pixels. They use system Chromium when available. Elsewhere, install Chromium with `npx playwright install chromium`, or set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to an existing executable.
+The tests exercise desktop and mobile rendering, navigation, removal of the contact section, accessibility, and layout down to 320 pixels. They use system Chromium when available. Elsewhere, install Chromium with `npx playwright install chromium`, or set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to an existing executable.
 
 ## Deployment
 

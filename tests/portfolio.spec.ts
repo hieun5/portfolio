@@ -17,6 +17,15 @@ test("loads the profile without browser errors and leaves projects for later", a
   await expect(page.getByText("Projects coming soon.")).toBeVisible();
   await expect(page.locator(".project-card")).toHaveCount(0);
   await expect(
+    page.getByRole("heading", { name: "Technical Skills", exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Get in touch", exact: true }),
+  ).toHaveCount(0);
+  await expect(page.locator('a[href^="mailto:"], a[href^="tel:"]')).toHaveCount(
+    0,
+  );
+  await expect(
     page.getByRole("link", { name: "GitHub", exact: true }),
   ).toHaveAttribute("href", "https://github.com/hieun5");
   expect(errors).toEqual([]);
@@ -32,39 +41,15 @@ test("navigation links work on desktop and mobile", async ({ page }) => {
   ).toBeVisible();
   await page
     .getByRole("navigation")
-    .getByRole("link", { name: "Contact", exact: true })
+    .getByRole("link", { name: "Skills", exact: true })
     .click();
-  await expect(page).toHaveURL(/#contact$/);
+  await expect(page).toHaveURL(/#skills$/);
   await expect(
-    page.getByRole("heading", { name: "Get in touch" }),
+    page.getByRole("heading", { name: "Technical Skills" }),
   ).toBeInViewport();
   await page.getByRole("link", { name: "Back to top" }).click();
   await expect(page).toHaveURL(/#home$/);
   await expect(page.getByRole("heading", { level: 1 })).toBeInViewport();
-});
-
-test("contact links provide email and phone and copy the email address", async ({
-  page,
-  context,
-}) => {
-  await context.grantPermissions(["clipboard-read", "clipboard-write"]);
-  await page.goto("/");
-  const contact = page.locator("#contact");
-  await expect(
-    contact.getByRole("link", { name: "hieunguy141@gmail.com" }),
-  ).toHaveAttribute("href", "mailto:hieunguy141@gmail.com");
-  await expect(
-    contact.getByRole("link", { name: "971 407 0001" }),
-  ).toHaveAttribute("href", "tel:9714070001");
-  await expect(contact.getByRole("link", { name: /github/i })).toHaveCount(0);
-  await page.getByRole("button", { name: "Copy email address" }).click();
-  await expect(page.getByRole("button", { name: "Copied!" })).toBeVisible();
-  expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(
-    "hieunguy141@gmail.com",
-  );
-  await expect(page.getByRole("status")).toHaveText(
-    "Email address copied to clipboard.",
-  );
 });
 
 test("has no serious accessibility violations or narrow-screen overflow", async ({

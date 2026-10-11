@@ -136,7 +136,8 @@ h1 span {
 .text-link:hover {
   color: var(--accent);
 }
-.work-section {
+.work-section,
+.skills-section {
   border-top: 1px solid var(--line);
   padding-block: 30px 72px;
 }
@@ -157,7 +158,8 @@ h2 {
   font-variant-numeric: tabular-nums;
   color: var(--muted);
 }
-.empty-projects {
+.empty-projects,
+.empty-skills {
   color: var(--muted);
   font-size: 13px;
   line-height: 1.8;
@@ -165,46 +167,27 @@ h2 {
 }
 footer {
   border-top: 1px solid var(--line);
-  padding-top: 27px;
 }
-.contact-row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+.skills-list {
+  margin: 0;
+}
+.skill-group {
+  display: grid;
+  grid-template-columns: 150px 1fr;
   gap: 20px;
+  font-size: 13px;
+  line-height: 1.85;
 }
-.contact-links {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
+.skill-group + .skill-group {
+  margin-top: 13px;
 }
-.contact-email {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.copy-contact {
-  padding: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: 0;
-  color: var(--muted);
-  border-radius: 3px;
-}
-.copy-contact:hover {
+.skill-group dt {
   color: var(--text);
-  background: #1f1f1f;
 }
-.copy-feedback {
-  min-height: 17px;
-  font-size: 10px;
-  line-height: 1.6;
-  margin: 6px 0 0;
-  color: var(--accent);
-  text-align: right;
+.skill-group dd {
+  margin: 0;
+  color: var(--muted);
+  overflow-wrap: anywhere;
 }
 .footer-bottom {
   display: flex;
@@ -230,7 +213,6 @@ footer {
 }
 .project-card + .project-card {
   border-top: 1px solid var(--line);
-  padding-top: 27px;
 }
 .project-card:last-child {
   padding-bottom: 0;
@@ -354,28 +336,16 @@ footer {
   .hero-link {
     margin-top: 25px;
   }
-  .work-section {
+  .work-section,
+  .skills-section {
     padding-block: 25px 52px;
   }
   .section-label {
     margin-bottom: 18px;
   }
-  .empty-projects {
+  .empty-projects,
+  .empty-skills {
     font-size: 12px;
-  }
-  footer {
-    padding-top: 22px;
-  }
-  .contact-row {
-    align-items: center;
-    gap: 15px;
-  }
-  .contact-links {
-    gap: 5px;
-  }
-  .contact-links .text-link {
-    font-size: 11px;
-    gap: 7px;
   }
   .footer-bottom {
     padding-block: 32px 28px;
@@ -388,15 +358,13 @@ footer {
   .project-heading {
     align-items: start;
   }
-}
-@media (max-width: 360px) {
-  .contact-row {
-    align-items: start;
-    flex-direction: column;
-    gap: 12px;
+  .skill-group {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    font-size: 12px;
   }
-  .copy-feedback {
-    text-align: left;
+  .skill-group + .skill-group {
+    margin-top: 18px;
   }
 }
 @media (prefers-reduced-motion: reduce) {

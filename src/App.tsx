@@ -1,31 +1,7 @@
-import { useEffect, useRef, useState } from "react";
-import { ArrowUp, ArrowUpRight, Check, Copy, Plus } from "lucide-react";
-import { profile, projects } from "./content";
+import { ArrowUp, ArrowUpRight, Plus } from "lucide-react";
+import { profile, projects, technicalSkills } from "./content";
 
 export default function App() {
-  const [copyState, setCopyState] = useState<"idle" | "copied" | "error">(
-    "idle",
-  );
-  const copyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useEffect(
-    () => () => {
-      if (copyTimer.current) clearTimeout(copyTimer.current);
-    },
-    [],
-  );
-
-  async function copyContact() {
-    try {
-      await navigator.clipboard.writeText(profile.email);
-      setCopyState("copied");
-    } catch {
-      setCopyState("error");
-    }
-    if (copyTimer.current) clearTimeout(copyTimer.current);
-    copyTimer.current = setTimeout(() => setCopyState("idle"), 3000);
-  }
-
   return (
     <>
       <a className="skip-link" href="#main">
@@ -42,7 +18,7 @@ export default function App() {
           </a>
           <nav aria-label="Main navigation">
             <a href="#work">Projects</a>
-            <a href="#contact">Contact</a>
+            <a href="#skills">Skills</a>
           </nav>
         </header>
 
@@ -128,49 +104,30 @@ export default function App() {
               </div>
             )}
           </section>
+          <section
+            className="skills-section"
+            id="skills"
+            aria-labelledby="skills-heading"
+          >
+            <div className="section-label">
+              <h2 id="skills-heading">Technical Skills</h2>
+            </div>
+            {technicalSkills.length > 0 ? (
+              <dl className="skills-list">
+                {technicalSkills.map((group) => (
+                  <div className="skill-group" key={group.category}>
+                    <dt>{group.category}</dt>
+                    <dd>{group.items.join(" · ")}</dd>
+                  </div>
+                ))}
+              </dl>
+            ) : (
+              <p className="empty-skills">Skills will be added here soon.</p>
+            )}
+          </section>
         </main>
 
-        <footer id="contact" aria-labelledby="contact-heading">
-          <div className="contact-row">
-            <h2 id="contact-heading">Get in touch</h2>
-            <div className="contact-links">
-              {profile.email && (
-                <div className="contact-email">
-                  <a className="text-link" href={`mailto:${profile.email}`}>
-                    {profile.email} <ArrowUpRight size={14} />
-                  </a>
-                  <button
-                    className="copy-contact"
-                    aria-label={
-                      copyState === "copied" ? "Copied!" : "Copy email address"
-                    }
-                    onClick={copyContact}
-                  >
-                    {copyState === "copied" ? (
-                      <Check size={14} />
-                    ) : (
-                      <Copy size={14} />
-                    )}
-                  </button>
-                </div>
-              )}
-              {profile.phone && (
-                <a
-                  className="text-link"
-                  href={`tel:${profile.phone.replace(/[^\d+]/g, "")}`}
-                >
-                  {profile.phone} <ArrowUpRight size={14} />
-                </a>
-              )}
-            </div>
-          </div>
-          <p className="copy-feedback" role="status">
-            {copyState === "error"
-              ? "Copy is unavailable. You can use the link above."
-              : copyState === "copied"
-                ? "Email address copied to clipboard."
-                : ""}
-          </p>
+        <footer>
           <div className="footer-bottom">
             <p>
               © {new Date().getFullYear()} {profile.name}
