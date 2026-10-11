@@ -22,9 +22,9 @@ test("loads the profile without browser errors and leaves projects for later", a
   await expect(
     page.getByRole("heading", { name: "Get in touch", exact: true }),
   ).toHaveCount(0);
-  await expect(page.locator('a[href^="mailto:"], a[href^="tel:"]')).toHaveCount(
-    0,
-  );
+  await expect(
+    page.locator('footer a[href^="mailto:"], a[href^="tel:"]'),
+  ).toHaveCount(0);
   await expect(
     page.getByRole("link", { name: "GitHub", exact: true }),
   ).toHaveAttribute("href", "https://github.com/hieun5");
@@ -37,15 +37,20 @@ test("navigation links work on desktop and mobile", async ({ page }) => {
   await expect(
     page
       .getByRole("navigation")
-      .getByRole("link", { name: "Projects", exact: true }),
+      .getByRole("link", { name: "GitHub", exact: true }),
   ).toBeVisible();
+  await expect(
+    page
+      .getByRole("navigation")
+      .getByRole("link", { name: "Email", exact: true }),
+  ).toHaveAttribute("href", "mailto:hieunguy141@gmail.com");
   await page
     .getByRole("navigation")
-    .getByRole("link", { name: "Skills", exact: true })
+    .getByRole("link", { name: "Projects", exact: true })
     .click();
-  await expect(page).toHaveURL(/#skills$/);
+  await expect(page).toHaveURL(/#work$/);
   await expect(
-    page.getByRole("heading", { name: "Technical Skills" }),
+    page.getByRole("heading", { name: "Projects", exact: true }),
   ).toBeInViewport();
   await page.getByRole("link", { name: "Back to top" }).click();
   await expect(page).toHaveURL(/#home$/);

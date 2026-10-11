@@ -119,9 +119,6 @@ h1 span {
   max-width: 460px;
   margin: 0;
 }
-.hero-link {
-  margin-top: 29px;
-}
 .text-link {
   display: inline-flex;
   align-items: center;
@@ -179,15 +176,38 @@ footer {
   line-height: 1.85;
 }
 .skill-group + .skill-group {
-  margin-top: 13px;
+  margin-top: 18px;
 }
 .skill-group dt {
   color: var(--text);
+  padding-block: 5px;
+  line-height: 1.5;
 }
 .skill-group dd {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 8px;
   margin: 0;
-  color: var(--muted);
-  overflow-wrap: anywhere;
+}
+.skill-pill {
+  display: inline-block;
+  padding: 6px 11px;
+  border-radius: 999px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.skill-group--blue .skill-pill {
+  background: #d8eaff;
+  color: #233f5b;
+}
+.skill-group--orange .skill-pill {
+  background: #ffe5cc;
+  color: #654224;
+}
+.skill-group--green .skill-pill {
+  background: #def0d6;
+  color: #314b29;
 }
 .footer-bottom {
   display: flex;
@@ -332,9 +352,6 @@ footer {
     font-size: 13px;
     line-height: 1.85;
     max-width: 300px;
-  }
-  .hero-link {
-    margin-top: 25px;
   }
   .work-section,
   .skills-section {

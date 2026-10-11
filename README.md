@@ -24,9 +24,9 @@ npm run dev -- --port 5173 --strictPort
 
 ## Personalize
 
-Edit `src/content.ts` to update the name, role, short introduction, and GitHub profile. Update `technicalSkills` using entries with a `category` and an `items` array. No API key or backend is required.
+Edit `src/content.ts` to update the name, role, short introduction, GitHub profile, and email address. GitHub and Email appear in the header navigation. Update `technicalSkills` using entries with a `category`, a `tone` (`blue`, `orange`, or `green`), and an `items` array. Languages use light blue pills, frameworks and libraries share light orange pills, and tools use light green pills. No API key or backend is required.
 
-The current skills list is based on the public [lolPredict backend](https://github.com/hieun5/lolPredict/blob/752c8e4a3bb8ce0870535a7fdf69602a18a42e2e/backend/main.py) and this portfolio's source, package manifest, tests, and deployment script. It lists technologies used in those repositories, with no proficiency ratings.
+The current skills list is based on the public [lolPredict source](https://github.com/hieun5/lolPredict/tree/ddc9ca1ce6a1893143897481573a7379947058ed) and this portfolio's source, package manifest, and deployment script. The latest lolPredict backend imports Requests and FastAPI, its ML scripts use pandas, and its frontend uses React, TypeScript, Vite, and ESLint. The page lists technologies used in those repositories, with no proficiency ratings, and omits testing skills.
 
 The projects array is intentionally empty. The page displays a short placeholder until you add real projects. Each project supports:
 

@@ -18,7 +18,14 @@ export default function App() {
           </a>
           <nav aria-label="Main navigation">
             <a href="#work">Projects</a>
-            <a href="#skills">Skills</a>
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+            <a href={`mailto:${profile.email}`}>Email</a>
           </nav>
         </header>
 
@@ -30,14 +37,6 @@ export default function App() {
             </h1>
             <p className="role">{profile.role}</p>
             <p className="hero-intro">{profile.intro}</p>
-            <a
-              className="text-link hero-link"
-              href={profile.github}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub <ArrowUpRight size={14} />
-            </a>
           </section>
 
           <section
@@ -115,9 +114,18 @@ export default function App() {
             {technicalSkills.length > 0 ? (
               <dl className="skills-list">
                 {technicalSkills.map((group) => (
-                  <div className="skill-group" key={group.category}>
+                  <div
+                    className={`skill-group skill-group--${group.tone}`}
+                    key={group.category}
+                  >
                     <dt>{group.category}</dt>
-                    <dd>{group.items.join(" · ")}</dd>
+                    <dd>
+                      {group.items.map((skill) => (
+                        <span className="skill-pill" key={skill}>
+                          {skill}
+                        </span>
+                      ))}
+                    </dd>
                   </div>
                 ))}
               </dl>

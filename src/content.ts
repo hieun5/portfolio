@@ -4,24 +4,33 @@ export const profile = {
   role: "Software engineering & AI / ML",
   intro: "Interested in useful software and practical machine learning.",
   github: "https://github.com/hieun5",
+  email: "hieunguy141@gmail.com",
   source: "https://github.com/hieun5/portfolio",
 };
 
 export interface SkillGroup {
   category: string;
+  tone: "blue" | "orange" | "green";
   items: string[];
 }
 
-// Based on lolPredict/backend/main.py and this portfolio's source and manifests.
+// Based on lolPredict's backend, ML scripts, and frontend, plus this portfolio.
 export const technicalSkills: SkillGroup[] = [
   {
     category: "Languages",
+    tone: "blue",
     items: ["Python", "TypeScript", "JavaScript", "HTML", "CSS"],
   },
-  { category: "Frameworks", items: ["React", "FastAPI"] },
-  { category: "Libraries", items: ["Lucide React"] },
-  { category: "Tools", items: ["Git", "Node.js", "Vite", "npm"] },
-  { category: "Testing", items: ["Playwright", "axe-core"] },
+  {
+    category: "Frameworks & libraries",
+    tone: "orange",
+    items: ["React", "FastAPI", "pandas", "Requests", "Lucide React"],
+  },
+  {
+    category: "Tools",
+    tone: "green",
+    items: ["Git", "Node.js", "Vite", "npm", "ESLint"],
+  },
 ];
 
 export type Category = "All work" | "Software engineering" | "AI / ML";
