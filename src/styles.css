@@ -180,7 +180,7 @@ footer {
 }
 .skill-group dt {
   color: var(--text);
-  padding-block: 5px;
+  padding-block: 2px;
   line-height: 1.5;
 }
 .skill-group dd {
@@ -192,22 +192,26 @@ footer {
 }
 .skill-pill {
   display: inline-block;
-  padding: 6px 11px;
+  padding: 2px 10px;
+  border: 1px solid var(--skill-color);
   border-radius: 999px;
+  background: var(--skill-background);
+  color: var(--skill-color);
   font-size: 12px;
-  line-height: 1.4;
+  font-weight: 600;
+  line-height: 1.35;
 }
-.skill-group--blue .skill-pill {
-  background: #d8eaff;
-  color: #233f5b;
+.skill-group--blue {
+  --skill-color: #9acbff;
+  --skill-background: rgba(154, 203, 255, 0.04);
 }
-.skill-group--orange .skill-pill {
-  background: #ffe5cc;
-  color: #654224;
+.skill-group--orange {
+  --skill-color: #ffc58b;
+  --skill-background: rgba(255, 197, 139, 0.04);
 }
-.skill-group--green .skill-pill {
-  background: #def0d6;
-  color: #314b29;
+.skill-group--green {
+  --skill-color: #a8dfb0;
+  --skill-background: rgba(168, 223, 176, 0.04);
 }
 .footer-bottom {
   display: flex;

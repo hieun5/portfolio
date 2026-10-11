@@ -43,7 +43,10 @@ test("navigation links work on desktop and mobile", async ({ page }) => {
     page
       .getByRole("navigation")
       .getByRole("link", { name: "Email", exact: true }),
-  ).toHaveAttribute("href", "mailto:hieunguy141@gmail.com");
+  ).toHaveAttribute(
+    "href",
+    "https://mail.google.com/mail/?view=cm&fs=1&to=hieunguy141%40gmail.com",
+  );
   await page
     .getByRole("navigation")
     .getByRole("link", { name: "Projects", exact: true })

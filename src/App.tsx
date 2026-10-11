@@ -25,7 +25,13 @@ export default function App() {
             >
               GitHub
             </a>
-            <a href={`mailto:${profile.email}`}>Email</a>
+            <a
+              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Email
+            </a>
           </nav>
         </header>
 
