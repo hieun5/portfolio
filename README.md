@@ -1,6 +1,6 @@
 # Hieu Nguyen — Portfolio
 
-A responsive, dark portfolio for software engineering and AI/ML. Built with React, TypeScript, and Vite, with self-hosted fonts, custom SVG artwork, keyboard-accessible navigation, and reduced-motion support.
+A minimal, dark portfolio for software engineering and AI/ML. Built with React, TypeScript, and Vite, with self-hosted fonts, keyboard-accessible navigation, and reduced-motion support. The page has a brief introduction, a projects area, and contact links in the footer.
 
 ## Development
 
@@ -24,9 +24,9 @@ npm run dev -- --port 5173 --strictPort
 
 ## Personalize
 
-Edit `src/content.ts` to update the name, introduction, interests, GitHub profile, and optional public contact email. Without an email, the contact button opens GitHub and the copy button copies the profile link. No email provider, API key, or backend is required.
+Edit `src/content.ts` to update the name, role, short introduction, GitHub profile, and optional public contact email. Without an email, the contact link opens GitHub and the copy button copies the profile link. No email provider, API key, or backend is required.
 
-The projects array is intentionally empty. The page displays a designed coming-soon section until you add real projects. Each project supports:
+The projects array is intentionally empty. The page displays a short placeholder until you add real projects. Each project supports:
 
 ```ts
 {
@@ -43,7 +43,7 @@ The projects array is intentionally empty. The page displays a designed coming-s
 }
 ```
 
-Real projects automatically enable category filters and accessible case-study dialogs. Update the page title and description in `index.html` if you change the profile identity. Colors, spacing, and breakpoints are in `src/styles.css`.
+Real projects render as simple rows with expandable case studies. Update the page title and description in `index.html` if you change the profile identity. Colors, spacing, and breakpoints are in `src/styles.css`.
 
 ## Browser checks
 

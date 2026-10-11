@@ -8,13 +8,13 @@ test("loads the profile without browser errors and leaves projects for later", a
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
   await expect(page).toHaveTitle("Hieu Nguyen — Software & AI/ML Engineering");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText(
-    "Engineering ideas.",
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    "Hieu Nguyen.",
   );
   await expect(
-    page.locator(".hero-copy").getByText("I’m Hieu Nguyen.", { exact: false }),
+    page.getByText("Software engineering & AI / ML", { exact: true }),
   ).toBeVisible();
-  await expect(page.getByText("PROJECTS ON THE HORIZON")).toBeVisible();
+  await expect(page.getByText("Projects coming soon.")).toBeVisible();
   await expect(page.locator(".project-card")).toHaveCount(0);
   await expect(
     page.getByRole("link", { name: "Find me on GitHub", exact: false }).first(),
@@ -22,41 +22,25 @@ test("loads the profile without browser errors and leaves projects for later", a
   expect(errors).toEqual([]);
 });
 
-test("navigation moves to the right section and mobile menu dismisses", async ({
-  page,
-}, testInfo) => {
+test("navigation links work on desktop and mobile", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  const mobile = testInfo.project.name === "mobile";
-  if (mobile) {
-    await page.getByRole("button", { name: "Open navigation" }).click();
-    await expect(
-      page.getByRole("button", { name: "Close navigation" }),
-    ).toHaveAttribute("aria-expanded", "true");
-  }
+  await expect(
+    page
+      .getByRole("navigation")
+      .getByRole("link", { name: "Projects", exact: true }),
+  ).toBeVisible();
   await page
     .getByRole("navigation")
-    .getByRole("link", { name: "About", exact: true })
+    .getByRole("link", { name: "Contact", exact: true })
     .click();
-  await expect(page).toHaveURL(/#about$/);
-  await expect
-    .poll(() =>
-      page
-        .locator("#about")
-        .evaluate((element) => Math.abs(element.getBoundingClientRect().top)),
-    )
-    .toBeLessThan(40);
-  if (mobile) {
-    await expect(
-      page.getByRole("button", { name: "Open navigation" }),
-    ).toHaveAttribute("aria-expanded", "false");
-    await page.getByRole("link", { name: "Back to top" }).click();
-    await page.getByRole("button", { name: "Open navigation" }).click();
-    await page.keyboard.press("Escape");
-    await expect(
-      page.getByRole("button", { name: "Open navigation" }),
-    ).toHaveAttribute("aria-expanded", "false");
-  }
+  await expect(page).toHaveURL(/#contact$/);
+  await expect(
+    page.getByRole("heading", { name: "Get in touch" }),
+  ).toBeInViewport();
+  await page.getByRole("link", { name: "Back to top" }).click();
+  await expect(page).toHaveURL(/#home$/);
+  await expect(page.getByRole("heading", { level: 1 })).toBeInViewport();
 });
 
 test("contact button copies the actual GitHub link", async ({
