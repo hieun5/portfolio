@@ -237,64 +237,140 @@ footer {
   color: var(--text);
 }
 .project-card {
-  padding-bottom: 27px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #151518;
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
 }
-.project-card + .project-card {
-  border-top: 1px solid var(--line);
+.project-card:hover,
+.project-card:focus-within {
+  transform: translateY(-4px);
+  border-color: #46464e;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
 }
-.project-card:last-child {
-  padding-bottom: 0;
+.work-section > .section-label {
+  justify-content: center;
+  margin-block: 12px 36px;
 }
-.project-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+.work-section > .section-label h2 {
+  font-family: "Manrope Variable", sans-serif;
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: -1px;
 }
-.project-heading h3 {
-  font-size: 15px;
-  font-weight: 500;
-  margin: 0;
+.project-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
 }
-.project-heading h3 .text-link {
-  font-size: inherit;
+.project-card:only-child {
+  grid-column: 1 / -1;
+  width: min(100%, 392px);
+  justify-self: center;
 }
-.project-heading > span {
-  color: var(--muted);
-  font-size: 10px;
+.project-image {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 8 / 5;
+  background: #1d1d23;
 }
-.project-card > p {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.8;
-  margin: 8px 0 12px;
+.project-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent 55%, rgba(0, 0, 0, 0.3));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease;
 }
 .project-preview {
   display: block;
   width: 100%;
-  height: auto;
-  margin-block: 16px 20px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.35s ease;
 }
-.project-card > .project-stack-label {
-  font-size: 11px;
-  margin: 0 0 9px;
+.project-card:hover .project-preview,
+.project-card:focus-within .project-preview {
+  transform: scale(1.025);
+}
+.project-github {
+  position: absolute;
+  z-index: 1;
+  right: 16px;
+  bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 38px;
+  padding: 9px 14px;
+  border: 1px solid #4b4b54;
+  border-radius: 8px;
+  background: #17171d;
+  color: #f4f4f5;
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease,
+    background 0.15s ease;
+}
+.project-card:hover .project-github,
+.project-card:focus-within .project-github {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.project-card:hover .project-image::after,
+.project-card:focus-within .project-image::after {
+  opacity: 1;
+}
+.project-github:hover {
+  background: #2b2b34;
+}
+.project-body {
+  padding: 20px;
+}
+.project-body h3 {
+  font-family: "Manrope Variable", sans-serif;
+  font-size: 18px;
+  font-weight: 650;
+  line-height: 1.4;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+.project-body > p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 10px 0 18px;
 }
 .project-tech {
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
+  gap: 6px;
   list-style: none;
   padding: 0;
-  margin: 0 0 16px;
+  margin: 0;
 }
 .project-tech li {
-  padding: 3px 9px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  color: var(--muted);
+  padding: 4px 9px;
+  border: 1px solid #33333c;
+  border-radius: 5px;
+  background: #1d1d23;
+  color: #c5c5ce;
   font-size: 11px;
+  font-weight: 500;
   line-height: 1.5;
 }
 .project-card summary {
@@ -306,6 +382,7 @@ footer {
   font-size: 11px;
   list-style: none;
   min-height: 28px;
+  margin-top: 14px;
 }
 .project-card summary::-webkit-details-marker {
   display: none;
@@ -315,12 +392,6 @@ footer {
 }
 .project-details {
   padding-top: 12px;
-}
-.project-details img {
-  width: 100%;
-  max-height: 300px;
-  object-fit: cover;
-  margin-bottom: 12px;
 }
 .project-details p,
 .project-details li {
@@ -334,8 +405,12 @@ footer {
 .project-details ul {
   padding-left: 18px;
 }
-.project-details .project-tags {
-  font-size: 10px;
+@media (hover: none), (pointer: coarse) {
+  .project-github {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
 }
 @media (max-width: 700px) {
   .wrap {
@@ -354,6 +429,9 @@ footer {
   .hero-about-heading,
   .hero-intro {
     font-size: 14px;
+  }
+  .project-list {
+    grid-template-columns: 1fr;
   }
 }
 @media (max-width: 480px) {
@@ -408,8 +486,8 @@ footer {
   .footer-bottom .text-link {
     font-size: 9px;
   }
-  .project-heading {
-    align-items: start;
+  .project-body {
+    padding: 18px;
   }
   .skill-group {
     grid-template-columns: 1fr;
@@ -428,5 +506,11 @@ footer {
   *::before,
   *::after {
     transition: none !important;
+  }
+  .project-card:hover,
+  .project-card:focus-within,
+  .project-card:hover .project-preview,
+  .project-card:focus-within .project-preview {
+    transform: none;
   }
 }

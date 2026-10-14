@@ -53,73 +53,72 @@ export default function App() {
           >
             <div className="section-label">
               <h2 id="work-heading">Projects</h2>
-              {projects.length > 0 && (
-                <span>{projects.length.toString().padStart(2, "0")}</span>
-              )}
             </div>
             {projects.length === 0 ? (
               <p className="empty-projects">Projects coming soon.</p>
             ) : (
               <div className="project-list">
                 {projects.map((project) => (
-                  <article className="project-card" key={project.id}>
-                    <div className="project-heading">
-                      <h3>
-                        {project.url ? (
-                          <a
-                            className="text-link"
-                            href={project.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {project.title} <ArrowUpRight size={15} />
-                          </a>
-                        ) : (
-                          project.title
-                        )}
-                      </h3>
-                      <span>{project.category}</span>
+                  <article
+                    className="project-card"
+                    key={project.id}
+                    aria-labelledby={`${project.id}-title`}
+                  >
+                    <div className="project-image">
+                      {project.image && (
+                        <img
+                          className="project-preview"
+                          src={`${import.meta.env.BASE_URL}${project.image.replace(/^\/+/, "")}`}
+                          alt={project.imageAlt ?? `${project.title} project preview`}
+                          width={1600}
+                          height={1000}
+                          loading="lazy"
+                        />
+                      )}
+                      {project.url && (
+                        <a
+                          className="project-github"
+                          href={project.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`View ${project.title} on GitHub`}
+                        >
+                          GitHub <ArrowUpRight size={14} aria-hidden="true" />
+                        </a>
+                      )}
                     </div>
-                    <p>{project.subtitle}</p>
-                    {project.image && (
-                      <img
-                        className="project-preview"
-                        src={`${import.meta.env.BASE_URL}${project.image.replace(/^\/+/, "")}`}
-                        alt={project.imageAlt ?? `${project.title} project preview`}
-                        width={1600}
-                        height={1000}
-                        loading="lazy"
-                      />
-                    )}
-                    <p className="project-stack-label">Built with</p>
-                    <ul
-                      className="project-tech"
-                      aria-label={`${project.title} technologies`}
-                    >
-                      {project.tags.map((tag) => (
-                        <li key={tag}>{tag}</li>
-                      ))}
-                    </ul>
-                    {(project.description ||
-                      project.intention ||
-                      Boolean(project.details?.length)) && (
-                      <details>
-                        <summary>
-                          Read more <Plus size={14} />
-                        </summary>
-                        <div className="project-details">
-                          {project.description && <p>{project.description}</p>}
-                          {project.intention && <p>{project.intention}</p>}
-                          {Boolean(project.details?.length) && (
-                            <ul>
-                              {project.details?.map((detail) => (
-                                <li key={detail}>{detail}</li>
-                              ))}
-                            </ul>
-                          )}
-                        </div>
-                      </details>
-                    )}
+                    <div className="project-body">
+                      <h3 id={`${project.id}-title`}>{project.title}</h3>
+                      <p>{project.subtitle}</p>
+                      <ul
+                        className="project-tech"
+                        aria-label={`${project.title} technologies`}
+                      >
+                        {project.tags.map((tag) => (
+                          <li key={tag}>{tag}</li>
+                        ))}
+                      </ul>
+                      {(project.description ||
+                        project.intention ||
+                        Boolean(project.details?.length)) && (
+                        <details>
+                          <summary>
+                            Read more <Plus size={14} />
+                          </summary>
+                          <div className="project-details">
+                            {project.description && <p>{project.description}</p>}
+                            {project.intention && <p>{project.intention}</p>}
+                            {Boolean(project.details?.length) && (
+                              <ul>
+                                {project.details?.map((detail) => (
+                                  <li key={detail}>{detail}</li>
+                                ))}
+                              </ul>
+                            )}
+                          </div>
+                        </details>
+                      )}
+                    </div>
                   </article>
                 ))}
               </div>

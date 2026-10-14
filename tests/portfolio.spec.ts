@@ -1,9 +1,10 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-test("loads the profile and studyAI project without browser errors", async ({
-  page,
-}) => {
+test("loads the profile and studyAI project without browser errors", async (
+  { page },
+  testInfo,
+) => {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
@@ -17,7 +18,9 @@ test("loads the profile and studyAI project without browser errors", async ({
   await expect(page.getByText("Projects coming soon.")).toHaveCount(0);
   const project = page.locator(".project-card");
   await expect(project).toHaveCount(1);
-  await expect(project.getByRole("link", { name: "studyAI" })).toHaveAttribute(
+  await expect(project.getByRole("heading", { name: "studyAI" })).toBeVisible();
+  const github = project.getByRole("link", { name: "View studyAI on GitHub" });
+  await expect(github).toHaveAttribute(
     "href",
     "https://github.com/hieun5/studyAI",
   );
@@ -27,6 +30,18 @@ test("loads the profile and studyAI project without browser errors", async ({
   await expect
     .poll(() => screenshot.evaluate((image: HTMLImageElement) => image.naturalWidth))
     .toBe(1600);
+  if (testInfo.project.name === "desktop") {
+    await page.mouse.move(0, 0);
+    await expect(github).toHaveCSS("opacity", "0");
+    await project.hover();
+    await expect(github).toHaveCSS("opacity", "1");
+    await page.mouse.move(0, 0);
+    await expect(github).toHaveCSS("opacity", "0");
+    await github.focus();
+    await expect(github).toHaveCSS("opacity", "1");
+  } else {
+    await expect(github).toHaveCSS("opacity", "1");
+  }
   await expect(
     project.getByRole("list", { name: "studyAI technologies" }),
   ).toContainText("Ollama");
