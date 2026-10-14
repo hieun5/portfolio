@@ -98,15 +98,15 @@ summary:focus-visible {
 .hero-heading-row {
   display: flex;
   align-items: center;
-  gap: 28px;
-  margin-bottom: 28px;
+  gap: 32px;
+  margin-bottom: 32px;
 }
 .hero-heading-row h1 {
   min-width: 0;
   margin: 0;
 }
 .hero-portrait-frame {
-  --portrait-size: 160px;
+  --portrait-size: 200px;
   position: relative;
   display: block;
   overflow: hidden;
@@ -129,7 +129,7 @@ summary:focus-visible {
 h1 {
   font-family: "Manrope Variable", sans-serif;
   margin: 0 0 23px;
-  font-size: clamp(44px, 6vw, 76px);
+  font-size: clamp(56px, 7.5vw, 92px);
   line-height: 1.12;
   font-weight: 550;
   letter-spacing: -3.9px;
@@ -405,10 +405,10 @@ h2 {
     gap: 24px;
   }
   .hero-portrait-frame {
-    --portrait-size: 120px;
+    --portrait-size: clamp(128px, 22vw, 160px);
   }
   h1 {
-    font-size: clamp(40px, 9vw, 58px);
+    font-size: clamp(46px, 9.5vw, 66px);
     letter-spacing: -2.4px;
   }
   .hero-about-heading,
@@ -439,14 +439,14 @@ h2 {
     padding-block: 70px 77px;
   }
   .hero-heading-row {
-    gap: 10px;
+    gap: 16px;
     margin-bottom: 25px;
   }
   .hero-portrait-frame {
-    --portrait-size: clamp(64px, 20vw, 80px);
+    --portrait-size: clamp(96px, 27vw, 128px);
   }
   h1 {
-    font-size: clamp(36px, 10.4vw, 49px);
+    font-size: clamp(44px, 12vw, 58px);
     letter-spacing: -1.9px;
     margin-bottom: 21px;
   }

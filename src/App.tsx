@@ -48,8 +48,8 @@ export default function App() {
                   className="hero-portrait"
                   src={portrait}
                   alt={`Portrait of ${profile.name}`}
-                  width={160}
-                  height={160}
+                  width={200}
+                  height={200}
                   fetchPriority="high"
                   decoding="async"
                 />

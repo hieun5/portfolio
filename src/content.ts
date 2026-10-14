@@ -2,9 +2,9 @@
 export const profile = {
   name: "Hieu Nguyen",
   intro:
-    "Sup! I'm Hieu (pronounced hue), a Computer Science student who likes building things and figuring out what makes them tick. I'm into software engineering and using AI and machine learning to solve everyday problems.",
+    "Hey! My name is Hieu and I'm a student at Portland State University studying Computer Science. My niche leans towards Software Engineering and AI/ML Engineering.",
   interests:
-    "Outside of school and code, I'm usually at the gym, playing video games, hanging out with friends, or trying new foods. A good workout, a good game, and a good meal make a pretty solid day.",
+    "Outside of programming, I like to hang out, explore, and try out foods with my friends! I also like to gym and play video games!",
   github: "https://github.com/hieun5",
   email: "hieunguy141@gmail.com",
   source: "https://github.com/hieun5/portfolio",
