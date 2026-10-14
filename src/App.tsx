@@ -43,15 +43,17 @@ export default function App() {
                 {profile.name}
                 <span>.</span>
               </h1>
-              <img
-                className="hero-portrait"
-                src={portrait}
-                alt={`Portrait of ${profile.name}`}
-                width={128}
-                height={128}
-                fetchPriority="high"
-                decoding="async"
-              />
+              <div className="hero-portrait-frame">
+                <img
+                  className="hero-portrait"
+                  src={portrait}
+                  alt={`Portrait of ${profile.name}`}
+                  width={160}
+                  height={160}
+                  fetchPriority="high"
+                  decoding="async"
+                />
+              </div>
             </div>
             <h2 className="hero-about-heading">About me</h2>
             <p className="hero-intro">{profile.intro}</p>
