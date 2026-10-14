@@ -269,6 +269,34 @@ footer {
   line-height: 1.8;
   margin: 8px 0 12px;
 }
+.project-preview {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-block: 16px 20px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.project-card > .project-stack-label {
+  font-size: 11px;
+  margin: 0 0 9px;
+}
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+}
+.project-tech li {
+  padding: 3px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
 .project-card summary {
   display: inline-flex;
   align-items: center;

@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-test("loads the profile without browser errors and leaves projects for later", async ({
+test("loads the profile and studyAI project without browser errors", async ({
   page,
 }) => {
   const errors: string[] = [];
@@ -14,8 +14,22 @@ test("loads the profile without browser errors and leaves projects for later", a
   await expect(
     page.getByRole("heading", { name: "About me", exact: true }),
   ).toBeVisible();
-  await expect(page.getByText("Projects coming soon.")).toBeVisible();
-  await expect(page.locator(".project-card")).toHaveCount(0);
+  await expect(page.getByText("Projects coming soon.")).toHaveCount(0);
+  const project = page.locator(".project-card");
+  await expect(project).toHaveCount(1);
+  await expect(project.getByRole("link", { name: "studyAI" })).toHaveAttribute(
+    "href",
+    "https://github.com/hieun5/studyAI",
+  );
+  const screenshot = project.getByRole("img");
+  await screenshot.scrollIntoViewIfNeeded();
+  await expect(screenshot).toBeVisible();
+  await expect
+    .poll(() => screenshot.evaluate((image: HTMLImageElement) => image.naturalWidth))
+    .toBe(1600);
+  await expect(
+    project.getByRole("list", { name: "studyAI technologies" }),
+  ).toContainText("Ollama");
   await expect(
     page.getByRole("heading", { name: "Technical Skills", exact: true }),
   ).toBeVisible();

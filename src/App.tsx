@@ -81,30 +81,45 @@ export default function App() {
                       <span>{project.category}</span>
                     </div>
                     <p>{project.subtitle}</p>
-                    <details>
-                      <summary>
-                        Read more <Plus size={14} />
-                      </summary>
-                      <div className="project-details">
-                        {project.image && (
-                          <img
-                            src={project.image}
-                            alt={`${project.title} project preview`}
-                            loading="lazy"
-                          />
-                        )}
-                        <p>{project.description}</p>
-                        <p>{project.intention}</p>
-                        <ul>
-                          {project.details.map((detail) => (
-                            <li key={detail}>{detail}</li>
-                          ))}
-                        </ul>
-                        <p className="project-tags">
-                          {project.tags.join(" · ")}
-                        </p>
-                      </div>
-                    </details>
+                    {project.image && (
+                      <img
+                        className="project-preview"
+                        src={`${import.meta.env.BASE_URL}${project.image.replace(/^\/+/, "")}`}
+                        alt={project.imageAlt ?? `${project.title} project preview`}
+                        width={1600}
+                        height={1000}
+                        loading="lazy"
+                      />
+                    )}
+                    <p className="project-stack-label">Built with</p>
+                    <ul
+                      className="project-tech"
+                      aria-label={`${project.title} technologies`}
+                    >
+                      {project.tags.map((tag) => (
+                        <li key={tag}>{tag}</li>
+                      ))}
+                    </ul>
+                    {(project.description ||
+                      project.intention ||
+                      Boolean(project.details?.length)) && (
+                      <details>
+                        <summary>
+                          Read more <Plus size={14} />
+                        </summary>
+                        <div className="project-details">
+                          {project.description && <p>{project.description}</p>}
+                          {project.intention && <p>{project.intention}</p>}
+                          {Boolean(project.details?.length) && (
+                            <ul>
+                              {project.details?.map((detail) => (
+                                <li key={detail}>{detail}</li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                      </details>
+                    )}
                   </article>
                 ))}
               </div>

@@ -57,6 +57,7 @@ try {
     // Protect a branch containing application source or unrelated user files.
     const allowed = new Set([
       "assets",
+      "projects",
       "index.html",
       "favicon.svg",
       ".nojekyll",

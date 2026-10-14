@@ -52,13 +52,40 @@ export interface Project {
   subtitle: string;
   category: Exclude<Category, "All work">;
   tags: string[];
-  description: string;
-  intention: string;
-  details: string[];
+  description?: string;
+  intention?: string;
+  details?: string[];
   image?: string;
+  imageAlt?: string;
   url?: string;
 }
 
-// Leave empty until your real projects are ready. The site shows a short placeholder.
-// Each entry supports a title, category, tags, image, live URL, and case-study details.
-export const projects: Project[] = [];
+// studyAI stack verified against source at cd181ffeb85559d1dd307374f196618256b71c06.
+// Images use paths relative to public/ so they work on GitHub Pages as well.
+export const projects: Project[] = [
+  {
+    id: "studyai",
+    title: "studyAI",
+    subtitle:
+      "A local AI study app that turns lecture notes and PDFs into practice quizzes and helps students decide what to review next.",
+    category: "AI / ML",
+    tags: [
+      "Python",
+      "TypeScript",
+      "React",
+      "Tailwind CSS",
+      "FastAPI",
+      "Pydantic",
+      "PyMuPDF",
+      "scikit-learn",
+      "NumPy",
+      "Ollama",
+      "httpx",
+      "Recharts",
+      "Vite",
+    ],
+    image: "projects/studyai.png",
+    imageAlt: "studyAI study workspace with sample lecture notes and PDF upload",
+    url: "https://github.com/hieun5/studyAI",
+  },
+];
