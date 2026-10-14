@@ -1,4 +1,4 @@
-import { ArrowUp, ArrowUpRight, Plus } from "lucide-react";
+import { ArrowUpRight, Plus } from "lucide-react";
 import { profile, projects, technicalSkills } from "./content";
 
 export default function App() {
@@ -44,6 +44,37 @@ export default function App() {
             <h2 className="hero-about-heading">About me</h2>
             <p className="hero-intro">{profile.intro}</p>
             <p className="hero-intro">{profile.interests}</p>
+          </section>
+
+          <section
+            className="skills-section"
+            id="skills"
+            aria-labelledby="skills-heading"
+          >
+            <div className="section-label">
+              <h2 id="skills-heading">Technical Skills</h2>
+            </div>
+            {technicalSkills.length > 0 ? (
+              <dl className="skills-list">
+                {technicalSkills.map((group) => (
+                  <div
+                    className={`skill-group skill-group--${group.tone}`}
+                    key={group.category}
+                  >
+                    <dt>{group.category}</dt>
+                    <dd>
+                      {group.items.map((skill) => (
+                        <span className="skill-pill" key={skill}>
+                          {skill}
+                        </span>
+                      ))}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            ) : (
+              <p className="empty-skills">Skills will be added here soon.</p>
+            )}
           </section>
 
           <section
@@ -124,48 +155,7 @@ export default function App() {
               </div>
             )}
           </section>
-          <section
-            className="skills-section"
-            id="skills"
-            aria-labelledby="skills-heading"
-          >
-            <div className="section-label">
-              <h2 id="skills-heading">Technical Skills</h2>
-            </div>
-            {technicalSkills.length > 0 ? (
-              <dl className="skills-list">
-                {technicalSkills.map((group) => (
-                  <div
-                    className={`skill-group skill-group--${group.tone}`}
-                    key={group.category}
-                  >
-                    <dt>{group.category}</dt>
-                    <dd>
-                      {group.items.map((skill) => (
-                        <span className="skill-pill" key={skill}>
-                          {skill}
-                        </span>
-                      ))}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            ) : (
-              <p className="empty-skills">Skills will be added here soon.</p>
-            )}
-          </section>
         </main>
-
-        <footer>
-          <div className="footer-bottom">
-            <p>
-              © {new Date().getFullYear()} {profile.name}
-            </p>
-            <a href="#home" className="text-link">
-              Back to top <ArrowUp size={12} />
-            </a>
-          </div>
-        </footer>
       </div>
     </>
   );

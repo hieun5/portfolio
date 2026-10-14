@@ -52,7 +52,7 @@ test("loads the profile and studyAI project without browser errors", async (
     page.getByRole("heading", { name: "Get in touch", exact: true }),
   ).toHaveCount(0);
   await expect(
-    page.locator('footer a[href^="mailto:"], a[href^="tel:"]'),
+    page.getByRole("contentinfo"),
   ).toHaveCount(0);
   await expect(
     page.getByRole("link", { name: "GitHub", exact: true }),
@@ -84,7 +84,7 @@ test("navigation links work on desktop and mobile", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: "Projects", exact: true }),
   ).toBeInViewport();
-  await page.getByRole("link", { name: "Back to top" }).click();
+  await page.getByRole("link", { name: "Hieu Nguyen, home" }).click();
   await expect(page).toHaveURL(/#home$/);
   await expect(page.getByRole("heading", { level: 1 })).toBeInViewport();
 });

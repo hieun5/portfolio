@@ -123,20 +123,6 @@ h1 span {
 .hero-intro + .hero-intro {
   margin-top: 16px;
 }
-.text-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  font-size: 12px;
-  line-height: 1.5;
-  min-height: 28px;
-}
-.text-link svg {
-  flex-shrink: 0;
-}
-.text-link:hover {
-  color: var(--accent);
-}
 .work-section,
 .skills-section {
   border-top: 1px solid var(--line);
@@ -154,20 +140,12 @@ h2 {
   line-height: 1.75;
   margin: 0;
 }
-.section-label > span {
-  font-size: 10px;
-  font-variant-numeric: tabular-nums;
-  color: var(--muted);
-}
 .empty-projects,
 .empty-skills {
   color: var(--muted);
   font-size: 13px;
   line-height: 1.8;
   margin: 0;
-}
-footer {
-  border-top: 1px solid var(--line);
 }
 .skills-list {
   margin: 0;
@@ -217,25 +195,6 @@ footer {
   --skill-color: #a8dfb0;
   --skill-background: rgba(168, 223, 176, 0.04);
 }
-.footer-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-block: 40px 34px;
-  gap: 20px;
-}
-.footer-bottom p {
-  font-size: 10px;
-  color: var(--muted);
-  margin: 0;
-}
-.footer-bottom .text-link {
-  font-size: 10px;
-  color: var(--muted);
-}
-.footer-bottom .text-link:hover {
-  color: var(--text);
-}
 .project-card {
   overflow: hidden;
   border: 1px solid var(--line);
@@ -251,17 +210,6 @@ footer {
   transform: translateY(-4px);
   border-color: #46464e;
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
-}
-.work-section > .section-label {
-  justify-content: center;
-  margin-block: 12px 36px;
-}
-.work-section > .section-label h2 {
-  font-family: "Manrope Variable", sans-serif;
-  font-size: clamp(28px, 4vw, 36px);
-  font-weight: 650;
-  line-height: 1.2;
-  letter-spacing: -1px;
 }
 .project-list {
   display: grid;
@@ -477,14 +425,6 @@ footer {
   .empty-projects,
   .empty-skills {
     font-size: 12px;
-  }
-  .footer-bottom {
-    padding-block: 32px 28px;
-    gap: 16px;
-  }
-  .footer-bottom p,
-  .footer-bottom .text-link {
-    font-size: 9px;
   }
   .project-body {
     padding: 18px;
