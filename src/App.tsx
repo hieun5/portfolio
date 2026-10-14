@@ -1,5 +1,6 @@
 import { ArrowUpRight, Plus } from "lucide-react";
 import { profile, projects, technicalSkills } from "./content";
+import portrait from "./assets/hieu-nguyen.jpg";
 
 export default function App() {
   return (
@@ -37,10 +38,21 @@ export default function App() {
 
         <main id="main">
           <section className="hero" id="home" aria-labelledby="hero-heading">
-            <h1 id="hero-heading">
-              {profile.name}
-              <span>.</span>
-            </h1>
+            <div className="hero-heading-row">
+              <h1 id="hero-heading">
+                {profile.name}
+                <span>.</span>
+              </h1>
+              <img
+                className="hero-portrait"
+                src={portrait}
+                alt={`Portrait of ${profile.name}`}
+                width={128}
+                height={128}
+                fetchPriority="high"
+                decoding="async"
+              />
+            </div>
             <h2 className="hero-about-heading">About me</h2>
             <p className="hero-intro">{profile.intro}</p>
             <p className="hero-intro">{profile.interests}</p>
