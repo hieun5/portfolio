@@ -1,6 +1,6 @@
-import { ArrowUpRight, Plus } from "lucide-react";
+import { Mail, Plus } from "lucide-react";
 import { profile, projects, technicalSkills } from "./content";
-import portrait from "./assets/hieu-nguyen.jpg";
+import GithubIcon from "./GithubIcon";
 
 export default function App() {
   return (
@@ -20,41 +20,30 @@ export default function App() {
           <nav aria-label="Main navigation">
             <a href="#work">Projects</a>
             <a
+              className="nav-button"
               href={profile.github}
               target="_blank"
               rel="noopener noreferrer"
             >
-              GitHub
+              <GithubIcon /> GitHub
             </a>
             <a
+              className="nav-button"
               href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}`}
               target="_blank"
               rel="noopener noreferrer"
             >
-              Email
+              <Mail size={16} aria-hidden="true" /> Email
             </a>
           </nav>
         </header>
 
         <main id="main">
           <section className="hero" id="home" aria-labelledby="hero-heading">
-            <div className="hero-heading-row">
-              <h1 id="hero-heading">
-                {profile.name}
-                <span>.</span>
-              </h1>
-              <div className="hero-portrait-frame">
-                <img
-                  className="hero-portrait"
-                  src={portrait}
-                  alt={`Portrait of ${profile.name}`}
-                  width={200}
-                  height={200}
-                  fetchPriority="high"
-                  decoding="async"
-                />
-              </div>
-            </div>
+            <h1 id="hero-heading">
+              {profile.name}
+              <span>.</span>
+            </h1>
             <h2 className="hero-about-heading">About me</h2>
             <p className="hero-intro">{profile.intro}</p>
             <p className="hero-intro">{profile.interests}</p>
@@ -128,7 +117,7 @@ export default function App() {
                           rel="noopener noreferrer"
                           aria-label={`View ${project.title} on GitHub`}
                         >
-                          GitHub <ArrowUpRight size={14} aria-hidden="true" />
+                          <GithubIcon /> GitHub
                         </a>
                       )}
                     </div>

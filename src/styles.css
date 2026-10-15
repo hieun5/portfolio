@@ -78,57 +78,45 @@ summary:focus-visible {
 }
 .site-header nav {
   display: flex;
-  gap: 28px;
+  gap: 12px;
   align-items: center;
 }
 .site-header nav a {
   display: flex;
   align-items: center;
-  min-height: 34px;
+  gap: 8px;
+  min-height: 38px;
   font-size: 12px;
+  line-height: 1.3;
   color: var(--muted);
   transition: color 0.15s;
 }
 .site-header nav a:hover {
   color: var(--text);
 }
+.site-header nav .nav-button {
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #1b1b20;
+  color: var(--text);
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+.site-header nav .nav-button:hover {
+  background: #26262d;
+  border-color: #44444e;
+}
+.site-header nav svg {
+  flex-shrink: 0;
+}
 .hero {
   padding-block: 103px 105px;
 }
-.hero-heading-row {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-  margin-bottom: 32px;
-}
-.hero-heading-row h1 {
-  min-width: 0;
-  margin: 0;
-}
-.hero-portrait-frame {
-  --portrait-size: 200px;
-  position: relative;
-  display: block;
-  overflow: hidden;
-  flex-shrink: 0;
-  width: var(--portrait-size);
-  height: var(--portrait-size);
-  border: 1px solid var(--line);
-  border-radius: 50%;
-}
-.hero-portrait {
-  position: absolute;
-  top: -12.5%;
-  left: -12.5%;
-  display: block;
-  width: 125%;
-  height: 125%;
-  object-fit: cover;
-  object-position: center;
-}
 h1 {
   font-family: "Manrope Variable", sans-serif;
-  margin: 0 0 23px;
+  margin: 0 0 32px;
   font-size: clamp(56px, 7.5vw, 92px);
   line-height: 1.12;
   font-weight: 550;
@@ -401,12 +389,6 @@ h2 {
   .hero {
     padding-block: 82px 84px;
   }
-  .hero-heading-row {
-    gap: 24px;
-  }
-  .hero-portrait-frame {
-    --portrait-size: clamp(128px, 22vw, 160px);
-  }
   h1 {
     font-size: clamp(46px, 9.5vw, 66px);
     letter-spacing: -2.4px;
@@ -427,10 +409,14 @@ h2 {
     padding-block: 24px;
   }
   .site-header nav {
-    gap: 22px;
+    gap: 10px;
   }
   .site-header nav a {
     font-size: 11px;
+  }
+  .site-header nav .nav-button {
+    gap: 6px;
+    padding: 8px 9px;
   }
   .wordmark {
     font-size: 18px;
@@ -438,17 +424,10 @@ h2 {
   .hero {
     padding-block: 70px 77px;
   }
-  .hero-heading-row {
-    gap: 16px;
-    margin-bottom: 25px;
-  }
-  .hero-portrait-frame {
-    --portrait-size: clamp(96px, 27vw, 128px);
-  }
   h1 {
     font-size: clamp(44px, 12vw, 58px);
     letter-spacing: -1.9px;
-    margin-bottom: 21px;
+    margin-bottom: 25px;
   }
   .hero-about-heading {
     font-size: 13px;
