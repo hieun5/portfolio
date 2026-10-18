@@ -12,6 +12,8 @@ test("loads the profile and studyAI project without browser errors", async (
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(
     "Hieu Nguyen.",
   );
+  await expect(page.getByRole("heading", { level: 1 })).toBeInViewport();
+  await expect(page.getByRole("banner")).toHaveCount(0);
   await expect(
     page.getByRole("heading", { name: "About me", exact: true }),
   ).toBeVisible();
@@ -30,6 +32,7 @@ test("loads the profile and studyAI project without browser errors", async (
   await expect
     .poll(() => screenshot.evaluate((image: HTMLImageElement) => image.naturalWidth))
     .toBe(1600);
+  await expect(page.locator("#work")).toHaveCSS("opacity", "1");
   if (testInfo.project.name === "desktop") {
     await page.mouse.move(0, 0);
     await expect(github).toHaveCSS("opacity", "0");
@@ -60,38 +63,33 @@ test("loads the profile and studyAI project without browser errors", async (
   expect(errors).toEqual([]);
 });
 
-test("navigation links work on desktop and mobile", async ({ page }) => {
+test("the sky journey reaches About me, contact links, and projects", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
+  await page.getByRole("link", { name: "Scroll to explore" }).click();
+  await expect(page).toHaveURL(/#about$/);
+  await expect(page.getByRole("heading", { name: "About me", exact: true })).toBeInViewport();
+  const contacts = page.getByRole("navigation", { name: "Contact links" });
+  await expect(contacts.getByRole("link", { name: "GitHub", exact: true })).toHaveAttribute("href", "https://github.com/hieun5");
   await expect(
-    page
-      .getByRole("navigation")
-      .getByRole("link", { name: "GitHub", exact: true }),
-  ).toBeVisible();
-  await expect(
-    page
-      .getByRole("navigation")
-      .getByRole("link", { name: "Email", exact: true }),
+    contacts.getByRole("link", { name: "Email", exact: true }),
   ).toHaveAttribute(
     "href",
     "https://mail.google.com/mail/?view=cm&fs=1&to=hieunguy141%40gmail.com",
   );
-  await page
-    .getByRole("navigation")
-    .getByRole("link", { name: "Projects", exact: true })
-    .click();
+  await page.getByRole("link", { name: "View projects", exact: true }).click();
   await expect(page).toHaveURL(/#work$/);
   await expect(
     page.getByRole("heading", { name: "Projects", exact: true }),
   ).toBeInViewport();
-  await page.getByRole("link", { name: "Hieu Nguyen, home" }).click();
-  await expect(page).toHaveURL(/#home$/);
-  await expect(page.getByRole("heading", { level: 1 })).toBeInViewport();
+  await expect(page.locator(".sky-scene")).toHaveAttribute("data-motion", "off");
+  await expect(page.locator("#work")).toHaveCSS("opacity", "1");
 });
 
 test("has no serious accessibility violations or narrow-screen overflow", async ({
   page,
 }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await page.evaluate(() => document.fonts.ready);
   const results = await new AxeBuilder({ page })
