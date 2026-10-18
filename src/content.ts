@@ -57,8 +57,13 @@ export interface Project {
   intention?: string;
   details?: string[];
   image?: string;
+  imageSources?: { src: string; width: number }[];
   imageAlt?: string;
   url?: string;
+}
+
+function imageSources(name: string) {
+  return [480, 960].map(width => ({ src: `projects/${name}-${width}.webp`, width }));
 }
 
 // studyAI stack verified against source at cd181ffeb85559d1dd307374f196618256b71c06.
@@ -80,6 +85,7 @@ export const projects: Project[] = [
       "Ollama",
     ],
     image: "projects/studyai.png",
+    imageSources: imageSources("studyai"),
     imageAlt: "studyAI study workspace with sample lecture notes and PDF upload",
     url: "https://github.com/hieun5/studyAI",
   },
@@ -92,6 +98,7 @@ export const projects: Project[] = [
     category: "AI / ML",
     tags: ["React", "TypeScript", "Python", "FastAPI", "scikit-learn", "pandas"],
     image: "projects/lolpropredictor-dashboard.png",
+    imageSources: imageSources("lolpropredictor-dashboard"),
     imageAlt: "lolProPredictor match dashboard comparing professional League of Legends teams",
     url: "https://github.com/hieun5/lolPredict",
   },
@@ -104,6 +111,7 @@ export const projects: Project[] = [
     category: "Software engineering",
     tags: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     image: "projects/blockwise-report.png",
+    imageSources: imageSources("blockwise-report"),
     imageAlt: "Blockwise website with its neighborhood report form and Portland community illustration",
     url: "https://github.com/hieun5/blockwise",
   },

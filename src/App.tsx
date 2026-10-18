@@ -102,14 +102,24 @@ export default function App() {
                     >
                       <div className="project-image">
                         {project.image && (
-                          <img
-                            className="project-preview"
-                            src={`${import.meta.env.BASE_URL}${project.image.replace(/^\/+/, "")}`}
-                            alt={project.imageAlt ?? `${project.title} project preview`}
-                            width={1600}
-                            height={1000}
-                            loading="lazy"
-                          />
+                          <picture>
+                            {project.imageSources && (
+                              <source
+                                type="image/webp"
+                                srcSet={project.imageSources.map(image => `${import.meta.env.BASE_URL}${image.src} ${image.width}w`).join(", ")}
+                                sizes="(max-width: 480px) calc(100vw - 40px), (max-width: 700px) calc(100vw - 56px), 388px"
+                              />
+                            )}
+                            <img
+                              className="project-preview"
+                              src={`${import.meta.env.BASE_URL}${project.image.replace(/^\/+/, "")}`}
+                              alt={project.imageAlt ?? `${project.title} project preview`}
+                              width={1600}
+                              height={1000}
+                              loading="lazy"
+                              decoding="async"
+                            />
+                          </picture>
                         )}
                         {project.url && (
                           <a

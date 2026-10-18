@@ -31,7 +31,8 @@ test("loads the profile and project cards without browser errors", async (
   await expect(screenshot).toBeVisible();
   await expect
     .poll(() => screenshot.evaluate((image: HTMLImageElement) => image.naturalWidth))
-    .toBe(1600);
+    .toBeGreaterThan(0);
+  await expect.poll(() => screenshot.evaluate((image: HTMLImageElement) => image.currentSrc)).toMatch(/-(480|960)\.webp$/);
   await expect(page.locator("#work")).toHaveCSS("opacity", "1");
   if (testInfo.project.name === "desktop") {
     await page.mouse.move(0, 0);
@@ -56,7 +57,8 @@ test("loads the profile and project cards without browser errors", async (
     await expect(card.getByRole("link", { name: `View ${name} on GitHub` })).toHaveAttribute("href", url);
     const preview = card.getByRole("img");
     await preview.scrollIntoViewIfNeeded();
-    await expect.poll(() => preview.evaluate((image: HTMLImageElement) => image.naturalWidth)).toBe(1600);
+    await expect.poll(() => preview.evaluate((image: HTMLImageElement) => image.naturalWidth)).toBeGreaterThan(0);
+    await expect.poll(() => preview.evaluate((image: HTMLImageElement) => image.currentSrc)).toMatch(/-(480|960)\.webp$/);
   }
   await expect(
     page.getByRole("heading", { name: "Technical Skills", exact: true }),
@@ -95,6 +97,34 @@ test("the sky journey reaches About me, contact links, and projects", async ({ p
   ).toBeInViewport();
   await expect(page.locator(".sky-scene")).toHaveAttribute("data-motion", "off");
   await expect(page.locator("#work")).toHaveCSS("opacity", "1");
+});
+
+test("sky motion responds to preference changes and rests below the clouds", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/");
+  const scene = page.locator(".sky-scene");
+  const backdrop = page.locator(".sky-backdrop");
+  const nearStars = page.locator(".starfield--near");
+  const offset = () => nearStars.evaluate(element => {
+    const transform = getComputedStyle(element).transform;
+    return transform === "none" ? 0 : new DOMMatrix(transform).m42;
+  });
+  await page.evaluate(() => scrollTo({ top: 900, behavior: "instant" }));
+  await expect.poll(offset).toBeLessThan(0);
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(scene).toHaveAttribute("data-motion", "off");
+  await expect.poll(offset).toBe(0);
+  await expect(page.locator(".star-twinkle")).toHaveCSS("animation-name", "none");
+  await expect(page.locator("#work")).toHaveCSS("opacity", "1");
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await expect(scene).toHaveAttribute("data-motion", "on");
+  await expect.poll(offset).toBeLessThan(0);
+  await page.evaluate(() => scrollTo({ top: document.documentElement.scrollHeight, behavior: "instant" }));
+  await expect(backdrop).toHaveAttribute("data-resting", "true");
+  await expect(page.locator(".star-twinkle")).toHaveCSS("animation-play-state", "paused");
+  await page.evaluate(() => scrollTo({ top: 0, behavior: "instant" }));
+  await expect(backdrop).toHaveAttribute("data-resting", "false");
+  await expect(page.locator(".star-twinkle")).toHaveCSS("animation-play-state", "running");
 });
 
 test("has no serious accessibility violations or narrow-screen overflow", async ({
