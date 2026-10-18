@@ -83,4 +83,28 @@ export const projects: Project[] = [
     imageAlt: "studyAI study workspace with sample lecture notes and PDF upload",
     url: "https://github.com/hieun5/studyAI",
   },
+  // Stack verified against lolPredict at 6de30b2bfdcdae6d1f5acbf73e211ce2ae1d096b.
+  {
+    id: "lolpropredictor",
+    title: "lolProPredictor",
+    subtitle:
+      "A machine learning app that predicts professional League of Legends match outcomes using team history and champion drafts.",
+    category: "AI / ML",
+    tags: ["React", "TypeScript", "Python", "FastAPI", "scikit-learn", "pandas"],
+    image: "projects/lolpropredictor.png",
+    imageAlt: "lolProPredictor match dashboard comparing professional League of Legends teams",
+    url: "https://github.com/hieun5/lolPredict",
+  },
+  // Stack verified against blockwise at 3377b2f51bcd96eeadac377cf750b3dafff2540c.
+  {
+    id: "blockwise",
+    title: "Blockwise",
+    subtitle:
+      "A civic reporting app that helps Portland residents draft reports for potholes, damaged sidewalks, and broken streetlights.",
+    category: "Software engineering",
+    tags: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+    image: "projects/blockwise.png",
+    imageAlt: "Blockwise website with its neighborhood report form and Portland community illustration",
+    url: "https://github.com/hieun5/blockwise",
+  },
 ];

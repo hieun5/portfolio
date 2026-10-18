@@ -19,8 +19,8 @@ export default function App() {
             <div className="hero-horizon" aria-hidden="true">
               <CloudBank seed={3} />
             </div>
-            <a className="scroll-cue" href="#about">
-              Scroll to explore <ArrowDown size={16} aria-hidden="true" />
+            <a className="scroll-cue" href="#about" aria-label="Scroll to About me">
+              <ArrowDown size={20} aria-hidden="true" />
             </a>
           </section>
 

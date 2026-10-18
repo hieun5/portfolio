@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-test("loads the profile and studyAI project without browser errors", async (
+test("loads the profile and project cards without browser errors", async (
   { page },
   testInfo,
 ) => {
@@ -18,8 +18,8 @@ test("loads the profile and studyAI project without browser errors", async (
     page.getByRole("heading", { name: "About me", exact: true }),
   ).toBeVisible();
   await expect(page.getByText("Projects coming soon.")).toHaveCount(0);
-  const project = page.locator(".project-card");
-  await expect(project).toHaveCount(1);
+  await expect(page.locator(".project-card")).toHaveCount(3);
+  const project = page.getByRole("article", { name: "studyAI", exact: true });
   await expect(project.getByRole("heading", { name: "studyAI" })).toBeVisible();
   const github = project.getByRole("link", { name: "View studyAI on GitHub" });
   await expect(github).toHaveAttribute(
@@ -48,6 +48,16 @@ test("loads the profile and studyAI project without browser errors", async (
   await expect(
     project.getByRole("list", { name: "studyAI technologies" }),
   ).toContainText("Ollama");
+  for (const [name, url] of [
+    ["lolProPredictor", "https://github.com/hieun5/lolPredict"],
+    ["Blockwise", "https://github.com/hieun5/blockwise"],
+  ]) {
+    const card = page.getByRole("article", { name, exact: true });
+    await expect(card.getByRole("link", { name: `View ${name} on GitHub` })).toHaveAttribute("href", url);
+    const preview = card.getByRole("img");
+    await preview.scrollIntoViewIfNeeded();
+    await expect.poll(() => preview.evaluate((image: HTMLImageElement) => image.naturalWidth)).toBe(1600);
+  }
   await expect(
     page.getByRole("heading", { name: "Technical Skills", exact: true }),
   ).toBeVisible();
@@ -66,7 +76,7 @@ test("loads the profile and studyAI project without browser errors", async (
 test("the sky journey reaches About me, contact links, and projects", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  await page.getByRole("link", { name: "Scroll to explore" }).click();
+  await page.getByRole("link", { name: "Scroll to About me", exact: true }).click();
   await expect(page).toHaveURL(/#about$/);
   await expect(page.getByRole("heading", { name: "About me", exact: true })).toBeInViewport();
   const contacts = page.getByRole("navigation", { name: "Contact links" });
