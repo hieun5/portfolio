@@ -1,6 +1,7 @@
-import { ArrowDown, Mail, Plus } from "lucide-react";
+import { ArrowDown, FolderOpen, Mail, Plus } from "lucide-react";
 import { profile, projects, technicalSkills } from "./content";
 import GithubIcon from "./GithubIcon";
+import LinkedinIcon from "./LinkedinIcon";
 import { CloudBank, SkyBackdrop } from "./Sky";
 import useSkyJourney from "./useSkyJourney";
 
@@ -28,16 +29,19 @@ export default function App() {
             <p className="hero-intro">{profile.intro}</p>
             <p className="hero-intro">{profile.interests}</p>
             <nav className="contact-links" aria-label="Contact links">
+              <a className="contact-button" href="#work">
+                <FolderOpen size={16} aria-hidden="true" /> Projects
+              </a>
               <a className="contact-button" href={profile.github} target="_blank" rel="noopener noreferrer">
                 <GithubIcon /> GitHub
               </a>
               <a className="contact-button" href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}`} target="_blank" rel="noopener noreferrer">
                 <Mail size={16} aria-hidden="true" /> Email
               </a>
+              <a className="contact-button" href={profile.linkedin} target="_blank" rel="noopener noreferrer">
+                <LinkedinIcon /> LinkedIn
+              </a>
             </nav>
-            <a className="descend-link" href="#work">
-              View projects <ArrowDown size={15} aria-hidden="true" />
-            </a>
           </section>
 
           <div className="cloud-realm">
@@ -45,6 +49,38 @@ export default function App() {
               <CloudBank className="cloud-bank--far" seed={5} />
               <CloudBank className="cloud-bank--near" seed={11} />
             </div>
+            <section
+              className="skills-section content-width reveal"
+              id="skills"
+              data-reveal=""
+              aria-labelledby="skills-heading"
+            >
+              <div className="section-label">
+                <h2 id="skills-heading">Technical Skills</h2>
+              </div>
+              {technicalSkills.length > 0 ? (
+                <dl className="skills-list">
+                  {technicalSkills.map((group) => (
+                    <div
+                      className={`skill-group skill-group--${group.tone}`}
+                      key={group.category}
+                    >
+                      <dt>{group.category}</dt>
+                      <dd>
+                        {group.items.map((skill) => (
+                          <span className="skill-pill" key={skill}>
+                            {skill}
+                          </span>
+                        ))}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              ) : (
+                <p className="empty-skills">Skills will be added here soon.</p>
+              )}
+            </section>
+
             <section
               className="work-section content-width reveal"
               id="work"
@@ -125,37 +161,6 @@ export default function App() {
               )}
             </section>
 
-            <section
-              className="skills-section content-width reveal"
-              id="skills"
-              data-reveal=""
-              aria-labelledby="skills-heading"
-            >
-              <div className="section-label">
-                <h2 id="skills-heading">Technical Skills</h2>
-              </div>
-              {technicalSkills.length > 0 ? (
-                <dl className="skills-list">
-                  {technicalSkills.map((group) => (
-                    <div
-                      className={`skill-group skill-group--${group.tone}`}
-                      key={group.category}
-                    >
-                      <dt>{group.category}</dt>
-                      <dd>
-                        {group.items.map((skill) => (
-                          <span className="skill-pill" key={skill}>
-                            {skill}
-                          </span>
-                        ))}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-              ) : (
-                <p className="empty-skills">Skills will be added here soon.</p>
-              )}
-            </section>
             <div className="lower-clouds" aria-hidden="true"><CloudBank seed={19} /></div>
           </div>
         </main>

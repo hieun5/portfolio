@@ -116,8 +116,8 @@ h1 span { color: #bdcde7; }
   letter-spacing: 0.06em;
   color: #c3cde0;
 }
-.scroll-cue svg, .descend-link svg { transition: transform 0.25s ease; }
-.scroll-cue:hover svg, .descend-link:hover svg { transform: translateY(4px); }
+.scroll-cue svg { transition: transform 0.25s ease; }
+.scroll-cue:hover svg { transform: translateY(4px); }
 .about-section {
   position: relative;
   z-index: 2;
@@ -146,16 +146,6 @@ h2 { font-size: 12px; font-weight: 500; line-height: 1.75; margin: 0; }
 }
 .contact-button:hover { background: #223754; border-color: #7894bc; transform: translateY(-2px); }
 .contact-button svg { flex-shrink: 0; }
-.descend-link {
-  display: inline-flex;
-  gap: 10px;
-  align-items: center;
-  min-height: 44px;
-  margin-top: 32px;
-  padding: 8px 12px;
-  font-size: 12px;
-  color: #c6d3ea;
-}
 .cloud-realm {
   position: relative;
   isolation: isolate;
@@ -171,7 +161,7 @@ h2 { font-size: 12px; font-weight: 500; line-height: 1.75; margin: 0; }
 .section-label { display: flex; align-items: baseline; gap: 13px; margin-bottom: 28px; }
 .section-label h2 { color: #e2ebfa; }
 .empty-projects, .empty-skills { color: var(--muted); font-size: 13px; line-height: 1.8; margin: 0; }
-.skills-section { margin-top: 10px; border-top: 1px solid var(--line); padding-top: 36px; }
+.work-section { margin-top: 10px; border-top: 1px solid var(--line); padding-top: 36px; }
 .lower-clouds { position: absolute; z-index: -1; left: -20%; bottom: -170px; width: 140%; height: 600px; opacity: 0.25; pointer-events: none; }
 .lower-clouds .cloud-bank { width: 100%; height: 100%; transform: scaleX(-1); }
 .reveal { opacity: 1; transform: translateY(0); transition: opacity 0.8s ease, transform 0.8s ease; }
@@ -412,6 +402,7 @@ h2 { font-size: 12px; font-weight: 500; line-height: 1.75; margin: 0; }
   .about-section { padding-block: 76px 48px; }
   .about-section h2 { font-size: 15px; margin-bottom: 20px; }
   .hero-intro { font-size: 14px; line-height: 1.9; }
+  .contact-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 300px; margin-inline: auto; }
   .contact-button { padding-inline: 16px; font-size: 12px; }
   .cloud-transition { height: 200px; }
   .cloud-transition .cloud-bank { width: 240%; left: -70%; }
@@ -431,5 +422,5 @@ h2 { font-size: 12px; font-weight: 500; line-height: 1.75; margin: 0; }
   .reveal, .sky-scene[data-motion="on"] .reveal[data-visible="false"] { opacity: 1; transform: none; }
   .project-card:hover, .project-card:focus-within,
   .project-card:hover .project-preview, .project-card:focus-within .project-preview,
-  .contact-button:hover, .scroll-cue:hover svg, .descend-link:hover svg { transform: none; }
+  .contact-button:hover, .scroll-cue:hover svg { transform: none; }
 }

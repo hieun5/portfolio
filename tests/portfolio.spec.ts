@@ -71,13 +71,14 @@ test("the sky journey reaches About me, contact links, and projects", async ({ p
   await expect(page.getByRole("heading", { name: "About me", exact: true })).toBeInViewport();
   const contacts = page.getByRole("navigation", { name: "Contact links" });
   await expect(contacts.getByRole("link", { name: "GitHub", exact: true })).toHaveAttribute("href", "https://github.com/hieun5");
+  await expect(contacts.getByRole("link", { name: "LinkedIn", exact: true })).toHaveAttribute("href", "https://www.linkedin.com/in/h1eunguyen/");
   await expect(
     contacts.getByRole("link", { name: "Email", exact: true }),
   ).toHaveAttribute(
     "href",
     "https://mail.google.com/mail/?view=cm&fs=1&to=hieunguy141%40gmail.com",
   );
-  await page.getByRole("link", { name: "View projects", exact: true }).click();
+  await contacts.getByRole("link", { name: "Projects", exact: true }).click();
   await expect(page).toHaveURL(/#work$/);
   await expect(
     page.getByRole("heading", { name: "Projects", exact: true }),

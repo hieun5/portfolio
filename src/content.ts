@@ -6,6 +6,7 @@ export const profile = {
   interests:
     "Outside of programming, I like to hang out, explore, and try out foods with my friends! I also like to gym and play video games!",
   github: "https://github.com/hieun5",
+  linkedin: "https://www.linkedin.com/in/h1eunguyen/",
   email: "hieunguy141@gmail.com",
   source: "https://github.com/hieun5/portfolio",
 };
