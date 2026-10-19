@@ -115,4 +115,17 @@ export const projects: Project[] = [
     imageAlt: "Blockwise website with its neighborhood report form and Portland community illustration",
     url: "https://github.com/hieun5/blockwise",
   },
+  // Stack verified against hieu-sreviews at f043e7727b9410e83a85820c1e29a3938ba2949a.
+  {
+    id: "hieus-reviews",
+    title: "Hieu’s Reviews",
+    subtitle:
+      "A shared food journal for tracking restaurant visits, comparing friends’ ratings, and exploring dining analytics.",
+    category: "Software engineering",
+    tags: ["Next.js", "TypeScript", "PostgreSQL", "Drizzle ORM", "Python", "Flask"],
+    image: "projects/hieus-reviews.png",
+    imageSources: imageSources("hieus-reviews"),
+    imageAlt: "Hieu’s Reviews reviewer selection screen with food illustrations and profile cards",
+    url: "https://github.com/hieun5/hieu-sreviews",
+  },
 ];

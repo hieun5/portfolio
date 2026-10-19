@@ -18,7 +18,7 @@ test("loads the profile and project cards without browser errors", async (
     page.getByRole("heading", { name: "About me", exact: true }),
   ).toBeVisible();
   await expect(page.getByText("Projects coming soon.")).toHaveCount(0);
-  await expect(page.locator(".project-card")).toHaveCount(3);
+  await expect(page.locator(".project-card")).toHaveCount(4);
   const project = page.getByRole("article", { name: "studyAI", exact: true });
   await expect(project.getByRole("heading", { name: "studyAI" })).toBeVisible();
   const github = project.getByRole("link", { name: "View studyAI on GitHub" });
@@ -52,6 +52,7 @@ test("loads the profile and project cards without browser errors", async (
   for (const [name, url] of [
     ["lolProPredictor", "https://github.com/hieun5/lolPredict"],
     ["Blockwise", "https://github.com/hieun5/blockwise"],
+    ["Hieu’s Reviews", "https://github.com/hieun5/hieu-sreviews"],
   ]) {
     const card = page.getByRole("article", { name, exact: true });
     await expect(card.getByRole("link", { name: `View ${name} on GitHub` })).toHaveAttribute("href", url);
