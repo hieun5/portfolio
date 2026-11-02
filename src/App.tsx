@@ -16,9 +16,7 @@ export default function App() {
               <span className="hero-surname">NGUYEN<span className="typing-dots" aria-hidden="true">...</span></span>
             </h1>
             <p className="hero-note">Computer Science at Portland State University.<br />Software engineering &amp; applied AI.</p>
-            <a className="scroll-cue" href="#about" aria-label="Scroll to About me">
-              <ArrowDown size={20} aria-hidden="true" />
-            </a>
+            <a className="hero-projects" href="#work">View projects <ArrowDown size={17} aria-hidden="true" /></a>
           </section>
 
           <section className="about-section content-width reveal" id="about" aria-labelledby="about-heading" data-reveal="">
@@ -32,7 +30,7 @@ export default function App() {
               <a className="contact-button" href={profile.github} target="_blank" rel="noopener noreferrer">
                 <GithubIcon /> GitHub
               </a>
-              <a className="contact-button" href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}`} target="_blank" rel="noopener noreferrer">
+              <a className="contact-button" href={`mailto:${profile.email}`}>
                 <Mail size={16} aria-hidden="true" /> Email
               </a>
               <a className="contact-button" href={profile.linkedin} target="_blank" rel="noopener noreferrer">
@@ -100,7 +98,7 @@ export default function App() {
                               <source
                                 type="image/webp"
                                 srcSet={project.imageSources.map(image => `${import.meta.env.BASE_URL}${image.src} ${image.width}w`).join(", ")}
-                                sizes="(max-width: 480px) calc(100vw - 40px), (max-width: 700px) calc(100vw - 56px), 388px"
+                                sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1440px) calc(43vw - 20px), calc(700px - 7vw)"
                               />
                             )}
                             <img
@@ -114,21 +112,17 @@ export default function App() {
                             />
                           </picture>
                         )}
-                        {project.url && (
-                          <a
-                            className="project-github"
-                            href={project.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`View ${project.title} on GitHub`}
-                          >
-                            <GithubIcon /> GitHub
-                          </a>
-                        )}
                       </div>
                       <div className="project-body">
-                        <h3 id={`${project.id}-title`}>{project.title}</h3>
+                        <h3 id={`${project.id}-title`}>
+                          {project.url ? <a href={project.url} target="_blank" rel="noopener noreferrer">{project.title}</a> : project.title}
+                        </h3>
                         <p>{project.subtitle}</p>
+                        {project.url && (
+                          <a className="project-source" href={project.url} target="_blank" rel="noopener noreferrer" aria-label={`View source for ${project.title}`}>
+                            <GithubIcon /> View source
+                          </a>
+                        )}
                         <ul
                           className="project-tech"
                           aria-label={`${project.title} technologies`}
@@ -162,6 +156,9 @@ export default function App() {
                   ))}
                 </div>
               )}
+              <div className="projects-contact">
+                <a href={`mailto:${profile.email}`}><Mail size={16} aria-hidden="true" /> {profile.email}</a>
+              </div>
             </section>
 
           </div>

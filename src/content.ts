@@ -63,7 +63,7 @@ export interface Project {
 }
 
 function imageSources(name: string) {
-  return [480, 960].map(width => ({ src: `projects/${name}-${width}.webp`, width }));
+  return [480, 640, 960, 1280, 1600].map(width => ({ src: `projects/${name}-${width}.webp`, width }));
 }
 
 // studyAI stack verified against source at cd181ffeb85559d1dd307374f196618256b71c06.
@@ -86,7 +86,7 @@ export const projects: Project[] = [
     ],
     image: "projects/studyai.png",
     imageSources: imageSources("studyai"),
-    imageAlt: "studyAI study workspace with sample lecture notes and PDF upload",
+    imageAlt: "studyAI practice quiz with a hash-table question and multiple-choice answers; labeled illustrative demo",
     url: "https://github.com/hieun5/studyAI",
   },
   // Stack verified against lolPredict at 6de30b2bfdcdae6d1f5acbf73e211ce2ae1d096b.
@@ -99,7 +99,7 @@ export const projects: Project[] = [
     tags: ["React", "TypeScript", "Python", "FastAPI", "scikit-learn", "pandas"],
     image: "projects/lolpropredictor-dashboard.png",
     imageSources: imageSources("lolpropredictor-dashboard"),
-    imageAlt: "lolProPredictor match dashboard comparing professional League of Legends teams",
+    imageAlt: "lolProPredictor result showing T1 at 58.2% and Gen.G at 41.8%; labeled illustrative demo probabilities",
     url: "https://github.com/hieun5/lolPredict",
   },
   // Stack verified against blockwise at 3377b2f51bcd96eeadac377cf750b3dafff2540c.
@@ -112,7 +112,7 @@ export const projects: Project[] = [
     tags: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     image: "projects/blockwise-report.png",
     imageSources: imageSources("blockwise-report"),
-    imageAlt: "Blockwise website with its neighborhood report form and Portland community illustration",
+    imageAlt: "Blockwise completed pothole report draft with editable description and export actions; labeled fictional demo",
     url: "https://github.com/hieun5/blockwise",
   },
   // Stack verified against hieu-sreviews at f043e7727b9410e83a85820c1e29a3938ba2949a.
@@ -125,7 +125,7 @@ export const projects: Project[] = [
     tags: ["Next.js", "TypeScript", "PostgreSQL", "Drizzle ORM", "Python", "Flask"],
     image: "projects/hieus-reviews.png",
     imageSources: imageSources("hieus-reviews"),
-    imageAlt: "Hieu’s Reviews reviewer selection screen with food illustrations and profile cards",
+    imageAlt: "Hieu’s Reviews restaurant ratings and recent visits for clearly labeled fictional demo restaurants",
     url: "https://github.com/hieun5/hieu-sreviews",
   },
 ];

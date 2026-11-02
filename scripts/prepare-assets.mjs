@@ -49,7 +49,7 @@ try {
   const projectFolder = join(root, "public/projects");
   for (const filename of (await readdir(projectFolder)).filter(name => name.endsWith(".png"))) {
     const source = `data:image/png;base64,${(await readFile(join(projectFolder, filename))).toString("base64")}`;
-    for (const width of [480, 960]) {
+    for (const width of [480, 640, 960, 1280, 1600]) {
       await convert(source, width,
         join(projectFolder, filename.replace(/\.png$/, `-${width}.webp`)), 0.88);
     }

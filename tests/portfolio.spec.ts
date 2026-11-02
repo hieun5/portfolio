@@ -23,7 +23,7 @@ test("loads the profile and project cards without browser errors", async (
   await expect(page.locator(".project-card")).toHaveCount(4);
   const project = page.getByRole("article", { name: "studyAI", exact: true });
   await expect(project.getByRole("heading", { name: "studyAI" })).toBeVisible();
-  const github = project.getByRole("link", { name: "View studyAI on GitHub" });
+  const github = project.getByRole("link", { name: "View source for studyAI" });
   await expect(github).toHaveAttribute(
     "href",
     "https://github.com/hieun5/studyAI",
@@ -34,20 +34,9 @@ test("loads the profile and project cards without browser errors", async (
   await expect
     .poll(() => screenshot.evaluate((image: HTMLImageElement) => image.naturalWidth))
     .toBeGreaterThan(0);
-  await expect.poll(() => screenshot.evaluate((image: HTMLImageElement) => image.currentSrc)).toMatch(/-(480|960)\.webp$/);
+  await expect.poll(() => screenshot.evaluate((image: HTMLImageElement) => image.currentSrc)).toMatch(/-(480|640|960|1280|1600)\.webp$/);
   await expect(page.locator("#work")).toHaveCSS("opacity", "1");
-  if (testInfo.project.name === "desktop") {
-    await page.mouse.move(0, 0);
-    await expect(github).toHaveCSS("opacity", "0");
-    await project.hover();
-    await expect(github).toHaveCSS("opacity", "1");
-    await page.mouse.move(0, 0);
-    await expect(github).toHaveCSS("opacity", "0");
-    await github.focus();
-    await expect(github).toHaveCSS("opacity", "1");
-  } else {
-    await expect(github).toHaveCSS("opacity", "1");
-  }
+  await expect(github).toBeVisible();
   await expect(
     project.getByRole("list", { name: "studyAI technologies" }),
   ).toContainText("Ollama");
@@ -57,11 +46,11 @@ test("loads the profile and project cards without browser errors", async (
     ["Hieu’s Reviews", "https://github.com/hieun5/hieu-sreviews"],
   ]) {
     const card = page.getByRole("article", { name, exact: true });
-    await expect(card.getByRole("link", { name: `View ${name} on GitHub` })).toHaveAttribute("href", url);
+    await expect(card.getByRole("link", { name: `View source for ${name}` })).toHaveAttribute("href", url);
     const preview = card.getByRole("img");
     await preview.scrollIntoViewIfNeeded();
     await expect.poll(() => preview.evaluate((image: HTMLImageElement) => image.naturalWidth)).toBeGreaterThan(0);
-    await expect.poll(() => preview.evaluate((image: HTMLImageElement) => image.currentSrc)).toMatch(/-(480|960)\.webp$/);
+    await expect.poll(() => preview.evaluate((image: HTMLImageElement) => image.currentSrc)).toMatch(/-(480|640|960|1280|1600)\.webp$/);
   }
   await expect(
     page.getByRole("heading", { name: "Technical Skills", exact: true }),
@@ -81,7 +70,11 @@ test("loads the profile and project cards without browser errors", async (
 test("navigation reaches About me, contact links, and projects", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  await page.getByRole("link", { name: "Scroll to About me", exact: true }).click();
+  await page.getByRole("link", { name: "View projects", exact: true }).click();
+  await expect(page).toHaveURL(/#work$/);
+  await expect(page.getByRole("heading", { name: "Projects", exact: true })).toBeInViewport();
+  await page.goto("/");
+  await page.goto("/#about");
   await expect(page).toHaveURL(/#about$/);
   await expect(page.getByRole("heading", { name: "About me", exact: true })).toBeInViewport();
   const contacts = page.getByRole("navigation", { name: "Contact links" });
@@ -91,7 +84,7 @@ test("navigation reaches About me, contact links, and projects", async ({ page }
     contacts.getByRole("link", { name: "Email", exact: true }),
   ).toHaveAttribute(
     "href",
-    "https://mail.google.com/mail/?view=cm&fs=1&to=hieunguy141%40gmail.com",
+    "mailto:hieunguy141@gmail.com",
   );
   await contacts.getByRole("link", { name: "Projects", exact: true }).click();
   await expect(page).toHaveURL(/#work$/);
