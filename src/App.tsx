@@ -2,23 +2,17 @@ import { ArrowDown, FolderOpen, Mail, Plus } from "lucide-react";
 import { profile, projects, technicalSkills } from "./content";
 import GithubIcon from "./GithubIcon";
 import LinkedinIcon from "./LinkedinIcon";
-import { CloudBank, SkyBackdrop } from "./Sky";
-import useSkyJourney from "./useSkyJourney";
 
 export default function App() {
-  const sceneRef = useSkyJourney();
 
   return (
     <>
       <a className="skip-link" href="#main">Skip to content</a>
-      <div className="sky-scene" ref={sceneRef}>
-        <SkyBackdrop />
+      <div className="portfolio">
         <main id="main">
           <section className="hero" id="home" aria-labelledby="hero-heading">
-            <h1 id="hero-heading">{profile.name}<span>.</span></h1>
-            <div className="hero-horizon" aria-hidden="true">
-              <CloudBank seed={3} />
-            </div>
+            <h1 id="hero-heading">Hieu <br /><span>Nguyen.</span></h1>
+            <p className="hero-note">Computer Science at Portland State University.<br />Software engineering &amp; applied AI.</p>
             <a className="scroll-cue" href="#about" aria-label="Scroll to About me">
               <ArrowDown size={20} aria-hidden="true" />
             </a>
@@ -44,11 +38,7 @@ export default function App() {
             </nav>
           </section>
 
-          <div className="cloud-realm">
-            <div className="cloud-transition" aria-hidden="true">
-              <CloudBank className="cloud-bank--far" seed={5} />
-              <CloudBank className="cloud-bank--near" seed={11} />
-            </div>
+          <div className="portfolio-content">
             <section
               className="skills-section content-width reveal"
               id="skills"
@@ -171,7 +161,6 @@ export default function App() {
               )}
             </section>
 
-            <div className="lower-clouds" aria-hidden="true"><CloudBank seed={19} /></div>
           </div>
         </main>
       </div>
