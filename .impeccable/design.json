@@ -1,1 +1,26 @@
-{"direction":"warm-editorial","mode":"experience","colors":{"surface":"#f5f1e8","ink":"#282620","accent":"#993c26","muted":"#655e54","line":"#d4cbbd"},"layout":{"maxWidth":1440,"mobilePadding":24,"projectColumns":2,"mobileProjectColumns":1},"motion":{"imageHoverScale":1.025,"reducedMotion":true}}
+{
+  "direction": "dark-editorial",
+  "mode": "experience",
+  "colors": {
+    "surface": "#121416",
+    "ink": "#eeeae4",
+    "accent": "#e4ab8c",
+    "muted": "#aaa9a5",
+    "line": "#34383b"
+  },
+  "layout": {
+    "maxWidth": 1440,
+    "mobilePadding": 24,
+    "projectColumns": 2,
+    "mobileProjectColumns": 1
+  },
+  "motion": {
+    "imageHoverScale": 1.025,
+    "reducedMotion": true
+  },
+  "typography": {
+    "family": "Inter Variable",
+    "heroCase": "uppercase",
+    "ellipsis": "three-dot delete/type cycle"
+  }
+}

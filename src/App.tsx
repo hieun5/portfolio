@@ -11,7 +11,10 @@ export default function App() {
       <div className="portfolio">
         <main id="main">
           <section className="hero" id="home" aria-labelledby="hero-heading">
-            <h1 id="hero-heading">Hieu <br /><span>Nguyen.</span></h1>
+            <h1 id="hero-heading" aria-label="HIEU NGUYEN...">
+              HIEU <br />
+              <span className="hero-surname">NGUYEN<span className="typing-dots" aria-hidden="true">...</span></span>
+            </h1>
             <p className="hero-note">Computer Science at Portland State University.<br />Software engineering &amp; applied AI.</p>
             <a className="scroll-cue" href="#about" aria-label="Scroll to About me">
               <ArrowDown size={20} aria-hidden="true" />

@@ -1,3 +1,3 @@
-# Warm editorial portfolio
+# Dark editorial portfolio
 
-Cream paper (#f5f1e8), deep ink (#282620), rust (#993c26). An Experience surface for exploring Hieu's four software projects. Oversized italic serif name, a right-aligned conversational introduction, a compact skills index, and staggered project spreads with large authentic screenshots. Native scrolling, visible content, keyboard-accessible repository actions, reduced-motion support, and responsive WebP images remain core constraints. No invented achievements or metrics.
+An Experience surface for exploring Hieu's four verified software projects. Charcoal (#121416), warm white (#eeeae4), peach (#e4ab8c), muted text (#aaa9a5), and subtle rules (#34383b). Self-hosted Inter Variable throughout, including the uppercase two-line name, section titles, project titles, and descriptions. The three dots after NGUYEN delete and type back in through a fixed-width CSS clipping animation; reduced motion shows the full static ellipsis. Preserve the right-aligned introduction, compact skills, staggered project spreads, responsive WebP images, and accessible contact/repository actions. No portrait or footer.

@@ -10,9 +10,11 @@ test("loads the profile and project cards without browser errors", async (
   await page.goto("/");
   await expect(page).toHaveTitle("Hieu Nguyen — Software & AI/ML Engineering");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-    "Hieu Nguyen.",
+    "HIEU NGUYEN...",
   );
   await expect(page.getByRole("heading", { level: 1 })).toBeInViewport();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveAccessibleName("HIEU NGUYEN...");
+  await expect(page.locator("body")).toHaveCSS("font-family", /Inter Variable/);
   await expect(page.getByRole("banner")).toHaveCount(0);
   await expect(
     page.getByRole("heading", { name: "About me", exact: true }),
@@ -76,7 +78,7 @@ test("loads the profile and project cards without browser errors", async (
   expect(errors).toEqual([]);
 });
 
-test("the sky journey reaches About me, contact links, and projects", async ({ page }) => {
+test("navigation reaches About me, contact links, and projects", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await page.getByRole("link", { name: "Scroll to About me", exact: true }).click();
@@ -97,6 +99,30 @@ test("the sky journey reaches About me, contact links, and projects", async ({ p
     page.getByRole("heading", { name: "Projects", exact: true }),
   ).toBeInViewport();
   await expect(page.locator("#work")).toHaveCSS("opacity", "1");
+});
+
+test("name dots delete and retype without layout shifts and respect reduced motion", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/");
+  const dots = page.locator(".typing-dots");
+  await expect(dots).toHaveCSS("animation-name", "type-dots");
+  const states = await dots.evaluate(async element => {
+    const animation = element.getAnimations()[0];
+    await animation.ready;
+    animation.pause();
+    const result = [];
+    for (const time of [0, 2280, 3780]) {
+      animation.currentTime = time;
+      result.push({ clip: getComputedStyle(element).clipPath, width: element.getBoundingClientRect().width });
+    }
+    return result;
+  });
+  expect(states[0].clip).not.toBe(states[1].clip);
+  expect(states[0].clip).toBe(states[2].clip);
+  expect(states[0].width).toBe(states[1].width);
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(dots).toHaveCSS("animation-name", "none");
+  await expect(dots).toHaveCSS("clip-path", "inset(0px)");
 });
 
 test("has no serious accessibility violations or narrow-screen overflow", async ({
