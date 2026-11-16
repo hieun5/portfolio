@@ -15,7 +15,7 @@ export default function App() {
               HIEU <br />
               <span className="hero-surname">NGUYEN<span className="typing-dots" aria-hidden="true">...</span></span>
             </h1>
-            <p className="hero-note">CS @ Portland State University · Software engineering &amp; applied AI<br />Seeking SWE / ML internships for Summer 2027</p>
+            <p className="hero-note">CS @ Portland State University<br />Software engineering &amp; applied AI</p>
             <div className="hero-actions">
               <a className="hero-projects" href="#work">View projects <ArrowDown size={17} aria-hidden="true" /></a>
               <a className="contact-button" href={`${import.meta.env.BASE_URL}resume.pdf`} target="_blank" rel="noopener noreferrer"><FileText size={16} aria-hidden="true" /> Résumé</a>
