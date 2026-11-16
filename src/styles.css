@@ -78,7 +78,7 @@ h1{font-size:clamp(44px,14vw,92px)}
 95%,100%{clip-path:inset(0)}
 }
 
-.hero-projects{align-self:flex-start;display:inline-flex;align-items:center;gap:24px;margin:24px 0 0 8px;padding:14px 20px;min-height:48px;background:var(--accent);color:#121416;border-radius:4px;font-size:14px;font-weight:600;transition:background .2s}
+.hero-projects{display:inline-flex;align-items:center;gap:24px;padding:14px 20px;min-height:48px;background:var(--accent);color:#121416;border-radius:4px;font-size:14px;font-weight:600;transition:background .2s}
 .hero-projects:hover{background:var(--text)}
 
 .project-body h3 a{text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:6px;transition:color .2s,text-decoration-color .2s}
@@ -88,3 +88,6 @@ h1{font-size:clamp(44px,14vw,92px)}
 .project-source:hover,.projects-contact a:hover{color:var(--text)}
 .projects-contact{display:flex;justify-content:flex-end;margin-top:48px;padding-top:24px;border-top:1px solid var(--line)}
 .projects-contact a{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:14px;color:var(--accent);text-decoration:underline;text-underline-offset:4px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:24px 0 0 8px}
+.project-details ul{padding-left:18px;margin:10px 0 0}
+.project-details li+li{margin-top:6px}

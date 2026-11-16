@@ -13,7 +13,7 @@ test("loads the profile and project cards without browser errors", async (
     "HIEU NGUYEN...",
   );
   await expect(page.getByRole("heading", { level: 1 })).toBeInViewport();
-  await expect(page.getByRole("heading", { level: 1 })).toHaveAccessibleName("HIEU NGUYEN...");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveAccessibleName("Hieu Nguyen");
   await expect(page.locator("body")).toHaveCSS("font-family", /Inter Variable/);
   await expect(page.getByRole("banner")).toHaveCount(0);
   await expect(
