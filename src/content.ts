@@ -2,7 +2,7 @@
 export const profile = {
   name: "Hieu Nguyen",
   intro:
-    "Hey! My name is Hieu and I'm a student at Portland State University studying Computer Science. My niche leans towards Software Engineering and AI/ML Engineering.",
+    "I'm a Computer Science student at Portland State University (class of 2028) who likes shipping things end to end — from a FastAPI model server to the React screen that explains its prediction.",
   interests:
     "Outside of programming, I like to hang out, explore, and try out foods with my friends! I also like to gym and play video games!",
   github: "https://github.com/hieun5",
@@ -17,7 +17,7 @@ export interface SkillGroup {
   items: string[];
 }
 
-// Based on lolPredict and this portfolio, with additional languages requested by Hieu.
+// Based on the project stacks below and Hieu's résumé.
 export const technicalSkills: SkillGroup[] = [
   {
     category: "Languages",
@@ -35,14 +35,14 @@ export const technicalSkills: SkillGroup[] = [
     ],
   },
   {
-    category: "Frameworks & libraries",
+    category: "Frameworks & ML",
     tone: "orange",
-    items: ["React", "FastAPI", "pandas", "Requests", "Lucide React"],
+    items: ["React", "Next.js", "FastAPI", "Flask", "Tailwind CSS", "scikit-learn", "pandas"],
   },
   {
-    category: "Tools",
+    category: "Data & tools",
     tone: "green",
-    items: ["Git", "Node.js", "Vite", "npm", "ESLint"],
+    items: ["Git", "PostgreSQL", "Drizzle ORM", "Node.js", "Vite", "Playwright", "Ollama"],
   },
 ];
 
@@ -88,6 +88,11 @@ export const projects: Project[] = [
     imageSources: imageSources("studyai"),
     imageAlt: "studyAI practice quiz with a hash-table question and multiple-choice answers; labeled illustrative demo",
     url: "https://github.com/hieun5/studyAI",
+    details: [
+      "Converts lecture notes into personalized practice questions with a React + TypeScript front end and a FastAPI back end.",
+      "Uses TF-IDF vectorization and cosine-similarity retrieval to pick the source material behind each piece of AI feedback.",
+      "Evaluates student explanations with a local LLM to spot knowledge gaps and recommend what to review next.",
+    ],
   },
   // Stack verified against lolPredict at 6de30b2bfdcdae6d1f5acbf73e211ce2ae1d096b.
   {
@@ -101,6 +106,11 @@ export const projects: Project[] = [
     imageSources: imageSources("lolpropredictor-dashboard"),
     imageAlt: "lolProPredictor result showing T1 at 58.2% and Gen.G at 41.8%; labeled illustrative demo probabilities",
     url: "https://github.com/hieun5/lolPredict",
+    details: [
+      "End-to-end ML pipeline that predicts pro League of Legends match outcomes from historical esports data.",
+      "Cleaned the datasets, ran exploratory analysis, and engineered features around team performance trends.",
+      "Trained and compared Logistic Regression and Random Forest models, served through FastAPI to a React dashboard.",
+    ],
   },
   // Stack verified against blockwise at 3377b2f51bcd96eeadac377cf750b3dafff2540c.
   {
@@ -127,5 +137,10 @@ export const projects: Project[] = [
     imageSources: imageSources("hieus-reviews"),
     imageAlt: "Hieu’s Reviews restaurant ratings and recent visits for clearly labeled fictional demo restaurants",
     url: "https://github.com/hieun5/hieu-sreviews",
+    details: [
+      "Cloud-hosted PostgreSQL database keeps visit history and powers ratings and cuisine analytics.",
+      "Python group recommendations combine individual ratings, cuisine preferences, and budget filters, with explanations.",
+      "SQL queries compute current ratings, group averages, and trends while keeping repeat visits from skewing rankings.",
+    ],
   },
 ];

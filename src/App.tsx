@@ -1,4 +1,4 @@
-import { ArrowDown, FolderOpen, Mail, Plus } from "lucide-react";
+import { ArrowDown, FileText, FolderOpen, Mail, Plus } from "lucide-react";
 import { profile, projects, technicalSkills } from "./content";
 import GithubIcon from "./GithubIcon";
 import LinkedinIcon from "./LinkedinIcon";
@@ -11,15 +11,18 @@ export default function App() {
       <div className="portfolio">
         <main id="main">
           <section className="hero" id="home" aria-labelledby="hero-heading">
-            <h1 id="hero-heading" aria-label="HIEU NGUYEN...">
+            <h1 id="hero-heading" aria-label="Hieu Nguyen">
               HIEU <br />
               <span className="hero-surname">NGUYEN<span className="typing-dots" aria-hidden="true">...</span></span>
             </h1>
-            <p className="hero-note">Computer Science at Portland State University.<br />Software engineering &amp; applied AI.</p>
-            <a className="hero-projects" href="#work">View projects <ArrowDown size={17} aria-hidden="true" /></a>
+            <p className="hero-note">CS @ Portland State University<br />Software engineering &amp; applied AI</p>
+            <div className="hero-actions">
+              <a className="hero-projects" href="#work">View projects <ArrowDown size={17} aria-hidden="true" /></a>
+              <a className="contact-button" href={`${import.meta.env.BASE_URL}resume.pdf`} target="_blank" rel="noopener noreferrer"><FileText size={16} aria-hidden="true" /> Résumé</a>
+            </div>
           </section>
 
-          <section className="about-section content-width reveal" id="about" aria-labelledby="about-heading" data-reveal="">
+          <section className="about-section content-width" id="about" aria-labelledby="about-heading">
             <h2 id="about-heading">About me</h2>
             <p className="hero-intro">{profile.intro}</p>
             <p className="hero-intro">{profile.interests}</p>
@@ -41,9 +44,9 @@ export default function App() {
 
           <div className="portfolio-content">
             <section
-              className="skills-section content-width reveal"
+              className="skills-section content-width"
               id="skills"
-              data-reveal=""
+             
               aria-labelledby="skills-heading"
             >
               <div className="section-label">
@@ -73,9 +76,9 @@ export default function App() {
             </section>
 
             <section
-              className="work-section content-width reveal"
+              className="work-section content-width"
               id="work"
-              data-reveal=""
+             
               aria-labelledby="work-heading"
             >
               <div className="section-label">
@@ -136,7 +139,7 @@ export default function App() {
                           Boolean(project.details?.length)) && (
                           <details>
                             <summary>
-                              Read more <Plus size={14} />
+                              Read more <Plus size={14} aria-hidden="true" />
                             </summary>
                             <div className="project-details">
                               {project.description && <p>{project.description}</p>}

@@ -1,8 +1,8 @@
-// Run npm run prepare:assets after changing the cloud SVG or original project PNGs.
+// Run npm run prepare:assets after changing the original project PNGs.
 // Generated images are committed; visitors and production builds do no conversion.
 import { chromium } from "@playwright/test";
 import { existsSync } from "node:fs";
-import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
+import { readFile, readdir, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -36,15 +36,6 @@ try {
     console.log(`${destination.slice(root.length + 1)}: ${bytes.length} bytes`);
   }
 
-  const cloudFolder = join(root, "src/assets/sky");
-  await mkdir(cloudFolder, { recursive: true });
-  const cloudSource = (await readFile(join(root, "scripts/assets/cloud.svg"), "utf8"))
-    .replace("<svg ", '<svg width="1600" height="640" ');
-  for (const seed of [3, 5, 11, 19]) {
-    const svg = cloudSource.replace(/seed="\d+"/, `seed="${seed}"`);
-    await convert(`data:image/svg+xml;base64,${Buffer.from(svg).toString("base64")}`,
-      800, join(cloudFolder, `cloud-${seed}.webp`), 0.86);
-  }
 
   const projectFolder = join(root, "public/projects");
   for (const filename of (await readdir(projectFolder)).filter(name => name.endsWith(".png"))) {
